@@ -9,7 +9,7 @@
 /* =========================================================
    GLOBAL BACKEND API CONFIGURATION
    ========================================================= */
-const API_BASE_URL = "http://localhost:5000/api"; // Production: "https://bolani-backend.vercel.app/api"
+const API_BASE_URL = "https://backend-amin.vercel.app/api"; // Production: "https://bolani-backend.vercel.app/api"
 
 
 /* =========================================================
