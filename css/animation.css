@@ -1,0 +1,1009 @@
+
+/* ============================================================
+   BOLANI E-COMMERCE WEBSITE
+   ANIMATION STYLESHEET
+   File: css/animation.css
+
+   PURPOSE:
+   - Navbar entrance animation
+   - Hero banner transitions
+   - Collection card reveal
+   - Collection image hover
+   - Offer card animation
+   - Social card reveal
+   - Footer reveal
+   - WhatsApp pulse
+   - Scroll reveal support
+   - Loading animation
+   - Accessibility / reduced motion
+
+   IMPORTANT:
+   Main styling:
+   css/style.css
+
+   Responsive styling:
+   css/responsive.css
+
+   JavaScript animations:
+   js/animation.js
+   ============================================================ */
+
+
+/* ============================================================
+   01 — GLOBAL ANIMATION VARIABLES
+   ============================================================ */
+
+:root {
+
+    --anim-fast: 0.2s;
+
+    --anim-normal: 0.4s;
+
+    --anim-slow: 0.8s;
+
+    --ease-standard:
+        cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    --ease-smooth:
+        cubic-bezier(0.22, 1, 0.36, 1);
+
+    --ease-bounce:
+        cubic-bezier(0.34, 1.56, 0.64, 1);
+
+}
+
+
+/* ============================================================
+   02 — PAGE LOAD
+   ============================================================ */
+
+/*
+   Body starts slightly hidden and becomes visible
+   after the page loads.
+
+   JavaScript adds:
+   .page-loaded
+
+   to the body.
+*/
+
+body {
+    opacity: 0;
+
+    transition:
+        opacity 0.5s ease;
+}
+
+
+body.page-loaded {
+    opacity: 1;
+}
+
+
+/* ============================================================
+   03 — NAVBAR ENTRANCE
+   ============================================================ */
+
+.site-header {
+    animation:
+        navbarDrop 0.8s var(--ease-smooth)
+        both;
+}
+
+
+@keyframes navbarDrop {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(-25px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* ============================================================
+   04 — LOGO ENTRANCE
+   ============================================================ */
+
+.brand-logo {
+    animation:
+        logoReveal 0.7s
+        0.15s
+        var(--ease-smooth)
+        both;
+}
+
+
+@keyframes logoReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(-15px)
+            scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0)
+            scale(1);
+    }
+
+}
+
+
+/* ============================================================
+   05 — NAVIGATION LINK ENTRANCE
+   ============================================================ */
+
+.nav-item {
+    opacity: 0;
+
+    animation:
+        navItemReveal 0.5s
+        var(--ease-smooth)
+        forwards;
+}
+
+
+/*
+   Stagger effect
+*/
+
+.nav-item:nth-child(1) {
+    animation-delay: 0.20s;
+}
+
+.nav-item:nth-child(2) {
+    animation-delay: 0.27s;
+}
+
+.nav-item:nth-child(3) {
+    animation-delay: 0.34s;
+}
+
+.nav-item:nth-child(4) {
+    animation-delay: 0.41s;
+}
+
+.nav-item:nth-child(5) {
+    animation-delay: 0.48s;
+}
+
+
+@keyframes navItemReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* ============================================================
+   06 — WHATSAPP NAVBAR ENTRANCE
+   ============================================================ */
+
+.navbar-whatsapp {
+    animation:
+        whatsappEntrance 0.7s
+        0.5s
+        var(--ease-bounce)
+        both;
+}
+
+
+@keyframes whatsappEntrance {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1);
+    }
+
+}
+
+
+/* ============================================================
+   07 — HERO SECTION
+   ============================================================ */
+
+.hero-section {
+    animation:
+        heroSectionReveal 1s
+        var(--ease-smooth)
+        both;
+}
+
+
+@keyframes heroSectionReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(1.01);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1);
+    }
+
+}
+
+
+/* ============================================================
+   08 — HERO IMAGE ZOOM
+   ============================================================ */
+
+/*
+   Active hero image gets a very subtle cinematic zoom.
+
+   This is intentionally slow so the banner does not
+   look distracting.
+*/
+
+.hero-slide.active .hero-image {
+    animation:
+        heroKenBurns 5s
+        ease-out
+        both;
+}
+
+
+@keyframes heroKenBurns {
+
+    from {
+        transform:
+            scale(1);
+    }
+
+    to {
+        transform:
+            scale(1.035);
+    }
+
+}
+
+
+/* ============================================================
+   09 — HERO SLIDE FADE
+   ============================================================ */
+
+.hero-slide {
+    transition:
+        opacity 0.9s
+        var(--ease-standard),
+        visibility 0.9s
+        var(--ease-standard);
+}
+
+
+.hero-slide.active {
+    animation:
+        heroSlideIn 0.9s
+        var(--ease-standard)
+        both;
+}
+
+
+@keyframes heroSlideIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(1.015);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1);
+    }
+
+}
+
+
+/* ============================================================
+   10 — SECTION REVEAL
+   ============================================================ */
+
+/*
+   JavaScript can add .reveal-ready to sections
+   and .is-visible when they enter the viewport.
+*/
+
+.reveal-element {
+    opacity: 0;
+
+    transform:
+        translateY(35px);
+
+    transition:
+        opacity 0.8s var(--ease-smooth),
+        transform 0.8s var(--ease-smooth);
+}
+
+
+.reveal-element.is-visible {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* ============================================================
+   11 — COLLECTION CARD REVEAL
+   ============================================================ */
+
+.collection-card {
+    opacity: 0;
+
+    transform:
+        translateY(30px)
+        scale(0.98);
+
+    animation:
+        collectionCardReveal 0.7s
+        var(--ease-smooth)
+        forwards;
+}
+
+
+/*
+   Staggered card animation
+*/
+
+.collection-card:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.collection-card:nth-child(2) {
+    animation-delay: 0.12s;
+}
+
+.collection-card:nth-child(3) {
+    animation-delay: 0.19s;
+}
+
+.collection-card:nth-child(4) {
+    animation-delay: 0.26s;
+}
+
+
+@keyframes collectionCardReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* ============================================================
+   12 — COLLECTION CARD HOVER
+   ============================================================ */
+
+.collection-card {
+    transition:
+        transform 0.45s var(--ease-smooth),
+        box-shadow 0.45s var(--ease-smooth);
+}
+
+
+.collection-card:hover {
+    transform:
+        translateY(-7px);
+}
+
+
+/* ============================================================
+   13 — COLLECTION IMAGE HOVER
+   ============================================================ */
+
+.collection-card-image img {
+    transition:
+        transform 0.8s
+        var(--ease-smooth);
+}
+
+
+.collection-card:hover
+.collection-card-image img {
+    transform:
+        scale(1.08);
+}
+
+
+/* ============================================================
+   14 — COLLECTION TEXT HOVER
+   ============================================================ */
+
+.collection-card-content {
+    transition:
+        transform 0.45s
+        var(--ease-smooth);
+}
+
+
+.collection-card:hover
+.collection-card-content {
+    transform:
+        translateY(-3px);
+}
+
+
+.collection-card-link {
+    transition:
+        gap 0.3s
+        var(--ease-standard),
+        opacity 0.3s ease;
+}
+
+
+.collection-card:hover
+.collection-card-link {
+    gap: 0.75rem;
+}
+
+
+/* ============================================================
+   15 — OFFER CARDS
+   ============================================================ */
+
+.offer-card {
+    opacity: 0;
+
+    animation:
+        offerCardReveal 0.65s
+        var(--ease-smooth)
+        forwards;
+}
+
+
+.offer-card:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.offer-card:nth-child(2) {
+    animation-delay: 0.12s;
+}
+
+.offer-card:nth-child(3) {
+    animation-delay: 0.19s;
+}
+
+.offer-card:nth-child(4) {
+    animation-delay: 0.26s;
+}
+
+.offer-card:nth-child(5) {
+    animation-delay: 0.33s;
+}
+
+.offer-card:nth-child(6) {
+    animation-delay: 0.40s;
+}
+
+
+@keyframes offerCardReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* ============================================================
+   16 — OFFER IMAGE HOVER
+   ============================================================ */
+
+.offer-card img {
+    transition:
+        transform 0.7s
+        var(--ease-smooth);
+}
+
+
+.offer-card:hover img {
+    transform:
+        scale(1.045);
+}
+
+
+/* ============================================================
+   17 — OFFER ARROW BUTTON
+   ============================================================ */
+
+.offers-slider-button {
+    transition:
+        transform 0.3s
+        var(--ease-bounce),
+        background 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.offers-slider-button:hover {
+    transform:
+        translateY(-50%)
+        scale(1.08);
+}
+
+
+.offers-slider-button:active {
+    transform:
+        translateY(-50%)
+        scale(0.94);
+}
+
+
+/* ============================================================
+   18 — SOCIAL MEDIA CARD REVEAL
+   ============================================================ */
+
+.social-card {
+    opacity: 0;
+
+    transform:
+        translateY(25px);
+
+    animation:
+        socialCardReveal 0.6s
+        var(--ease-smooth)
+        forwards;
+}
+
+
+.social-card:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.social-card:nth-child(2) {
+    animation-delay: 0.12s;
+}
+
+.social-card:nth-child(3) {
+    animation-delay: 0.19s;
+}
+
+.social-card:nth-child(4) {
+    animation-delay: 0.26s;
+}
+
+.social-card:nth-child(5) {
+    animation-delay: 0.33s;
+}
+
+
+@keyframes socialCardReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* ============================================================
+   19 — SOCIAL ICON HOVER
+   ============================================================ */
+
+.social-icon {
+    transition:
+        transform 0.35s
+        var(--ease-bounce),
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+
+.social-card:hover
+.social-icon {
+    transform:
+        scale(1.1)
+        rotate(-3deg);
+}
+
+
+/* ============================================================
+   20 — SOCIAL CARD HOVER
+   ============================================================ */
+
+.social-card {
+    transition:
+        transform 0.4s
+        var(--ease-smooth),
+        box-shadow 0.4s
+        var(--ease-smooth),
+        border-color 0.3s ease;
+}
+
+
+.social-card:hover {
+    transform:
+        translateY(-5px);
+}
+
+
+/* ============================================================
+   21 — FOOTER REVEAL
+   ============================================================ */
+
+.site-footer {
+    animation:
+        footerReveal 0.8s
+        var(--ease-smooth)
+        both;
+}
+
+
+@keyframes footerReveal {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+/* ============================================================
+   22 — FOOTER LINK ANIMATION
+   ============================================================ */
+
+.footer-column a {
+    transition:
+        color 0.25s ease,
+        padding-left 0.25s
+        var(--ease-standard);
+}
+
+
+.footer-column a:hover {
+    padding-left: 4px;
+}
+
+
+/* ============================================================
+   23 — FLOATING WHATSAPP PULSE
+   ============================================================ */
+
+.whatsapp-pulse {
+    animation:
+        whatsappPulse 2.2s
+        ease-out
+        infinite;
+}
+
+
+@keyframes whatsappPulse {
+
+    0% {
+        opacity: 0.8;
+
+        transform:
+            scale(0.92);
+    }
+
+    70% {
+        opacity: 0;
+
+        transform:
+            scale(1.25);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            scale(1.25);
+    }
+
+}
+
+
+/* ============================================================
+   24 — FLOATING WHATSAPP IDLE ANIMATION
+   ============================================================ */
+
+.floating-whatsapp {
+    animation:
+        whatsappFloat 3s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes whatsappFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-4px);
+    }
+
+}
+
+
+/* ============================================================
+   25 — MOBILE MENU ICON ANIMATION
+   ============================================================ */
+
+.mobile-menu-toggle span {
+    transition:
+        transform 0.3s
+        var(--ease-smooth),
+        opacity 0.2s ease;
+}
+
+
+/*
+   JavaScript adds .active to the toggle.
+*/
+
+.mobile-menu-toggle.active
+span:nth-child(1) {
+    transform:
+        translateY(7px)
+        rotate(45deg);
+}
+
+
+.mobile-menu-toggle.active
+span:nth-child(2) {
+    opacity: 0;
+
+    transform:
+        scaleX(0);
+}
+
+
+.mobile-menu-toggle.active
+span:nth-child(3) {
+    transform:
+        translateY(-7px)
+        rotate(-45deg);
+}
+
+
+/* ============================================================
+   26 — NAVBAR SCROLL EFFECT
+   ============================================================ */
+
+.site-header {
+    transition:
+        background 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease,
+        transform 0.35s
+        var(--ease-standard);
+}
+
+
+.site-header.scrolled {
+    animation:
+        navbarScrolled 0.35s
+        ease-out
+        both;
+}
+
+
+@keyframes navbarScrolled {
+
+    from {
+        transform:
+            translateY(-2px);
+    }
+
+    to {
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* ============================================================
+   27 — ACTIVE NAV LINK
+   ============================================================ */
+
+.nav-link::after {
+    transition:
+        width 0.3s
+        var(--ease-standard);
+}
+
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    animation:
+        navUnderline 0.3s
+        var(--ease-standard)
+        both;
+}
+
+
+@keyframes navUnderline {
+
+    from {
+        transform:
+            scaleX(0.5);
+    }
+
+    to {
+        transform:
+            scaleX(1);
+    }
+
+}
+
+
+/* ============================================================
+   28 — IMAGE LOADING EFFECT
+   ============================================================ */
+
+img {
+    background:
+        linear-gradient(
+            90deg,
+            #F8FAFC 0%,
+            #FFFFFF 50%,
+            #F8FAFC 100%
+        );
+}
+
+
+/* ============================================================
+   29 — BUTTON PRESS EFFECT
+   ============================================================ */
+
+button:active,
+.navbar-whatsapp:active,
+.floating-whatsapp:active,
+.collection-card:active,
+.social-card:active {
+    transform:
+        scale(0.98);
+}
+
+
+/* ============================================================
+   30 — TOUCH DEVICES
+   ============================================================ */
+
+@media (hover: none) and (pointer: coarse) {
+
+    /*
+       Remove hover-only animations on touch devices
+       to keep mobile performance smooth.
+    */
+
+    .collection-card:hover
+    .collection-card-content {
+        transform:
+            none;
+    }
+
+
+    .social-card:hover
+    .social-icon {
+        transform:
+            none;
+    }
+
+
+    .offer-card:hover img,
+    .collection-card:hover
+    .collection-card-image img {
+        transform:
+            none;
+    }
+
+}
+
+
+/* ============================================================
+   31 — REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+
+        scroll-behavior: auto !important;
+    }
+
+
+    body {
+        opacity: 1;
+    }
+
+}

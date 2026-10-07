@@ -1,0 +1,1154 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- =========================================================
+         BOLANI E-COMMERCE WEBSITE
+         Main Home Page
+         ========================================================= -->
+
+    <!-- =========================
+         BASIC META INFORMATION
+         ========================= -->
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Bolani - Shop Garments, Sport Shoes, Sports & Gym Essentials, and Tech Gadgets.">
+
+    <meta name="keywords"
+        content="Bolani, garments, sport shoes, sports, gym, tech gadgets, headphones, accessories">
+
+    <meta name="author" content="Bolani">
+
+    <!-- =========================
+         PAGE TITLE
+         ========================= -->
+
+    <title>Bolani | Garments, Sports & Tech Gadgets</title>
+
+
+    <!-- =========================
+         FAVICON
+         ========================= -->
+
+    <link rel="icon"
+        type="image/png"
+        href="images/logo/favicon.png">
+
+
+    <!-- =========================
+         GOOGLE FONTS
+         ========================= -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <!-- =========================
+         FONT AWESOME ICONS
+         ========================= -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+    <!-- =========================================================
+         MAIN CSS FILES
+         ========================================================= -->
+
+    <!-- Main Website Styling -->
+    <link rel="stylesheet"
+        href="css/style.css">
+
+    <!-- Responsive Design -->
+    <link rel="stylesheet"
+        href="css/responsive.css">
+
+    <!-- Animations -->
+    <link rel="stylesheet"
+        href="css/animation.css">
+
+
+    <!-- =========================================================
+         GSAP LIBRARY
+         ========================================================= -->
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js">
+    </script>
+
+
+    <!-- =========================================================
+         GSAP SCROLLTRIGGER
+         ========================================================= -->
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js">
+    </script>
+
+
+    <!-- =========================================================
+         THREE.JS
+         ========================================================= -->
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js">
+    </script>
+
+</head>
+
+
+<body>
+
+    <!-- =========================================================
+         WEBSITE MAIN WRAPPER
+         ========================================================= -->
+
+    <div class="site-wrapper">
+
+
+        <!-- =====================================================
+             SECTION 01 — NAVBAR
+             -----------------------------------------------------
+             Contains:
+             - Text Based Logo
+             - Navigation Links
+             - WhatsApp Button
+             - Mobile Navigation
+             ===================================================== -->
+
+        <header class="site-header"
+            id="site-header">
+
+            <nav class="navbar"
+                aria-label="Main Navigation">
+
+                <!-- =========================
+                     TEXT BASED LOGO
+                     ========================= -->
+
+                <a href="#home"
+                    class="brand-logo"
+                    aria-label="Bolani Home">
+
+                    <span class="brand-logo-text">
+                        BOLANI
+                    </span>
+
+                </a>
+
+
+                <!-- =========================
+                     MOBILE MENU TOGGLE
+                     ========================= -->
+
+                <button
+                    class="mobile-menu-toggle"
+                    id="mobile-menu-toggle"
+                    type="button"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false"
+                    aria-controls="main-navigation">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </button>
+
+
+                <!-- =========================
+                     MAIN NAVIGATION
+                     ========================= -->
+
+                <div class="main-navigation"
+                    id="main-navigation">
+
+                    <ul class="nav-list">
+
+                        <!-- Home -->
+                        <li class="nav-item">
+                            <a href="#home"
+                                class="nav-link active">
+                                Home
+                            </a>
+                        </li>
+
+
+                        <!-- Collection -->
+                        <li class="nav-item">
+                            <a href="#collection"
+                                class="nav-link">
+                                Collection
+                            </a>
+                        </li>
+
+
+                        <!-- Social -->
+                        <li class="nav-item">
+                            <a href="#social"
+                                class="nav-link">
+                                Social
+                            </a>
+                        </li>
+
+
+                        <!-- Offers -->
+                        <li class="nav-item">
+                            <a href="#offers"
+                                class="nav-link">
+                                Offer
+                            </a>
+                        </li>
+
+
+                        <!-- Contact -->
+                        <!-- Clicking Contact takes user to Footer -->
+                        <li class="nav-item">
+                            <a href="#footer"
+                                class="nav-link">
+                                Contact
+                            </a>
+                        </li>
+
+                    </ul>
+
+
+                    <!-- =========================
+                         NAVBAR WHATSAPP BUTTON
+                         ========================= -->
+
+                    <a
+                        href="https://wa.me/923000000000"
+                        class="navbar-whatsapp"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Contact Bolani on WhatsApp">
+
+                        <i class="fa-brands fa-whatsapp"
+                            aria-hidden="true">
+                        </i>
+
+                        <span>
+                            WhatsApp
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </nav>
+
+        </header>
+
+
+
+        <!-- =====================================================
+             MAIN WEBSITE CONTENT
+             ===================================================== -->
+
+        <main id="main-content">
+
+
+            <!-- =================================================
+                 SECTION 02 — HERO BANNER
+                 -------------------------------------------------
+                 IMPORTANT:
+                 - No text
+                 - No buttons
+                 - Four banner images
+                 - Automatic change every 5 seconds
+                 - Images: 1920 x 500
+                 - Mobile handled through responsive CSS
+                 ================================================= -->
+
+            <section
+                class="hero-section"
+                id="home"
+                aria-label="Bolani Featured Banners">
+
+
+                <!-- =========================
+                     HERO SLIDER
+                     ========================= -->
+
+                <div
+                    class="hero-slider"
+                    id="hero-slider">
+
+
+                    <!-- =========================
+                         HERO SLIDE 01
+                         ========================= -->
+
+                    <div
+                        class="hero-slide active"
+                        data-slide="1">
+
+                        <img
+                            src="images/banner 1.jpg"
+                            alt="Bolani Featured Collection Banner 1"
+                            class="hero-image"
+                            loading="eager">
+
+                    </div>
+
+
+                    <!-- =========================
+                         HERO SLIDE 02
+                         ========================= -->
+
+                    <div
+                        class="hero-slide"
+                        data-slide="2">
+
+                        <img
+                            src="images/banner 2.jpg"
+                            alt="Bolani Featured Collection Banner 2"
+                            class="hero-image"
+                            loading="lazy">
+
+                    </div>
+
+
+                    <!-- =========================
+                         HERO SLIDE 03
+                         ========================= -->
+
+                    <div
+                        class="hero-slide"
+                        data-slide="3">
+
+                        <img
+                            src="images/banner 3.jpg"
+                            alt="Bolani Featured Collection Banner 3"
+                            class="hero-image"
+                            loading="lazy">
+
+                    </div>
+
+
+                    <!-- =========================
+                         HERO SLIDE 04
+                         ========================= -->
+
+                    <div
+                        class="hero-slide"
+                        data-slide="4">
+
+                        <img
+                            src="images/banner 4.jpg"
+                            alt="Bolani Featured Collection Banner 4"
+                            class="hero-image"
+                            loading="lazy">
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SECTION 03 — COLLECTION
+                 -------------------------------------------------
+                 Four clickable square cards.
+                 
+                 Current collections:
+                 1. Garments
+                 2. Sport Shoes
+                 3. Sports & Gym
+                 4. Tech Gadgets
+
+                 Images:
+                 collection card 1
+                 collection card 2
+                 collection card 3
+                 collection card 4
+                 ================================================= -->
+
+            <section
+                class="collection-section"
+                id="collection"
+                aria-labelledby="collection-title">
+
+
+                <!-- =========================
+                     SECTION HEADER
+                     ========================= -->
+
+                <div class="section-container">
+
+                    <div class="section-heading">
+
+                        <span class="section-eyebrow">
+                            SHOP BY CATEGORY
+                        </span>
+
+                        <h2 id="collection-title">
+                            Explore Our Collections
+                        </h2>
+
+                    </div>
+
+
+                    <!-- =========================
+                         COLLECTION CARDS
+                         ========================= -->
+
+                    <div
+                        class="collection-grid"
+                        id="collection-grid">
+
+
+                        <!-- =========================
+                             COLLECTION CARD 01
+                             GARMENTS
+                             ========================= -->
+
+                        <a
+                            href="garments.html"
+                            class="collection-card"
+                            data-category="garments"
+                            aria-label="Open Garments Collection">
+
+                            <div class="collection-card-image">
+
+                                <img
+                                    src="images/collection card 1.jpg"
+                                    alt="Bolani Garments Collection"
+                                    loading="lazy">
+
+                            </div>
+
+                            <div class="collection-card-overlay">
+
+                                <div class="collection-card-content">
+
+                                    <span class="collection-card-number">
+                                        01
+                                    </span>
+
+                                    <h3>
+                                        Garments
+                                    </h3>
+
+                                    <span class="collection-card-link">
+                                        Explore
+                                        <i class="fa-solid fa-arrow-right"
+                                            aria-hidden="true">
+                                        </i>
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </a>
+
+
+
+                        <!-- =========================
+                             COLLECTION CARD 02
+                             SPORT SHOES
+                             ========================= -->
+
+                        <a
+                            href="sport-shoes.html"
+                            class="collection-card"
+                            data-category="sport-shoes"
+                            aria-label="Open Sport Shoes Collection">
+
+                            <div class="collection-card-image">
+
+                                <img
+                                    src="images/collection card 2.jpg"
+                                    alt="Bolani Sport Shoes Collection"
+                                    loading="lazy">
+
+                            </div>
+
+                            <div class="collection-card-overlay">
+
+                                <div class="collection-card-content">
+
+                                    <span class="collection-card-number">
+                                        02
+                                    </span>
+
+                                    <h3>
+                                        Sport Shoes
+                                    </h3>
+
+                                    <span class="collection-card-link">
+                                        Explore
+                                        <i class="fa-solid fa-arrow-right"
+                                            aria-hidden="true">
+                                        </i>
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </a>
+
+
+
+                        <!-- =========================
+                             COLLECTION CARD 03
+                             SPORTS & GYM
+                             ========================= -->
+
+                        <a
+                            href="sports-gym.html"
+                            class="collection-card"
+                            data-category="sports-gym"
+                            aria-label="Open Sports and Gym Collection">
+
+                            <div class="collection-card-image">
+
+                                <img
+                                    src="images/collection card 3.jpg"
+                                    alt="Bolani Sports and Gym Collection"
+                                    loading="lazy">
+
+                            </div>
+
+                            <div class="collection-card-overlay">
+
+                                <div class="collection-card-content">
+
+                                    <span class="collection-card-number">
+                                        03
+                                    </span>
+
+                                    <h3>
+                                        Sports & Gym
+                                    </h3>
+
+                                    <span class="collection-card-link">
+                                        Explore
+                                        <i class="fa-solid fa-arrow-right"
+                                            aria-hidden="true">
+                                        </i>
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </a>
+
+
+
+                        <!-- =========================
+                             COLLECTION CARD 04
+                             TECH GADGETS
+                             ========================= -->
+
+                        <a
+                            href="tech-gadgets.html"
+                            class="collection-card"
+                            data-category="tech-gadgets"
+                            aria-label="Open Tech Gadgets Collection">
+
+                            <div class="collection-card-image">
+
+                                <img
+                                    src="images/collection card 4.jpg"
+                                    alt="Bolani Tech Gadgets Collection"
+                                    loading="lazy">
+
+                            </div>
+
+                            <div class="collection-card-overlay">
+
+                                <div class="collection-card-content">
+
+                                    <span class="collection-card-number">
+                                        04
+                                    </span>
+
+                                    <h3>
+                                        Tech Gadgets
+                                    </h3>
+
+                                    <span class="collection-card-link">
+                                        Explore
+                                        <i class="fa-solid fa-arrow-right"
+                                            aria-hidden="true">
+                                        </i>
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </a>
+
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SECTION 04 — OFFERS
+                 -------------------------------------------------
+                 ADMIN PANEL READY STRUCTURE
+                 
+                 IMPORTANT BACKEND NOTE:
+                 -----------------------------------------------
+                 Future admin panel should create offer objects
+                 containing:
+                 
+                 - image
+                 - title (optional)
+                 - link
+                 - active status
+                 - display order
+                 
+                 The JavaScript file can later fetch these
+                 objects from API/database and inject them into:
+                 
+                 #offers-slider-track
+                 
+                 Therefore this section does NOT need a new
+                 HTML structure when backend is connected.
+                 ================================================= -->
+
+            <section
+                class="offers-section"
+                id="offers"
+                aria-labelledby="offers-title">
+
+
+                <div class="section-container">
+
+
+                    <!-- =========================
+                         OFFERS HEADER
+                         ========================= -->
+
+                    <div class="section-heading offers-heading">
+
+                        <span class="section-eyebrow">
+                            SPECIAL DEALS
+                        </span>
+
+                        <h2 id="offers-title">
+                            Latest Offers
+                        </h2>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         OFFER SLIDER WRAPPER
+                         ================================================= -->
+
+                    <div
+                        class="offers-slider-wrapper"
+                        id="offers-slider-wrapper">
+
+
+                        <!-- =========================
+                             LEFT ARROW
+                             ========================= -->
+
+                        <button
+                            class="offers-slider-button offers-prev"
+                            id="offers-prev"
+                            type="button"
+                            aria-label="Previous offers">
+
+                            <i class="fa-solid fa-chevron-left"
+                                aria-hidden="true">
+                            </i>
+
+                        </button>
+
+
+                        <!-- =========================
+                             OFFER SLIDER
+                             ========================= -->
+
+                        <div
+                            class="offers-slider"
+                            id="offers-slider"
+                            tabindex="0"
+                            aria-label="Offers carousel">
+
+
+                            <!-- =================================================
+                                 DYNAMIC OFFER TRACK
+                                 
+                                 ADMIN PANEL / API WILL EVENTUALLY
+                                 INJECT OFFER CARDS HERE.
+                                 ================================================= -->
+
+                            <div
+                                class="offers-slider-track"
+                                id="offers-slider-track">
+
+
+                                <!-- =============================================
+                                     DEMO OFFER CARD 01
+                                     ---------------------------------------------
+                                     Replace/remove through backend later.
+                                     ============================================= -->
+
+                                <a
+                                    href="#"
+                                    class="offer-card"
+                                    data-offer-id="demo-01"
+                                    data-offer-link="#">
+
+                                    <img
+                                        src="images/offer 1.jpg"
+                                        alt="Bolani Special Offer 1"
+                                        loading="lazy">
+
+                                </a>
+
+
+                                <!-- =============================================
+                                     DEMO OFFER CARD 02
+                                     ============================================= -->
+
+                                <a
+                                    href="#"
+                                    class="offer-card"
+                                    data-offer-id="demo-02"
+                                    data-offer-link="#">
+
+                                    <img
+                                        src="images/offer 2.jpg"
+                                        alt="Bolani Special Offer 2"
+                                        loading="lazy">
+
+                                </a>
+
+
+                                <!-- =============================================
+                                     DEMO OFFER CARD 03
+                                     ============================================= -->
+
+                                <a
+                                    href="#"
+                                    class="offer-card"
+                                    data-offer-id="demo-03"
+                                    data-offer-link="#">
+
+                                    <img
+                                        src="images/offer 3.jpg"
+                                        alt="Bolani Special Offer 3"
+                                        loading="lazy">
+
+                                </a>
+
+
+                                <!-- =============================================
+                                     DEMO OFFER CARD 04
+                                     ============================================= -->
+
+                                <a
+                                    href="#"
+                                    class="offer-card"
+                                    data-offer-id="demo-04"
+                                    data-offer-link="#">
+
+                                    <img
+                                        src="images/offer 4.jpg"
+                                        alt="Bolani Special Offer 4"
+                                        loading="lazy">
+
+                                </a>
+
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================
+                             RIGHT ARROW
+                             ========================= -->
+
+                        <button
+                            class="offers-slider-button offers-next"
+                            id="offers-next"
+                            type="button"
+                            aria-label="Next offers">
+
+                            <i class="fa-solid fa-chevron-right"
+                                aria-hidden="true">
+                            </i>
+
+                        </button>
+
+
+                    </div>
+
+
+                    <!-- =========================
+                         ADMIN DEVELOPMENT NOTE
+                         ========================= -->
+
+                    <!--
+                        FUTURE BACKEND:
+
+                        Admin Panel fields:
+
+                        offer_id
+                        image_url
+                        offer_link
+                        title
+                        active
+                        display_order
+
+                        JavaScript:
+                        fetchOffers()
+
+                        API response -> renderOffers()
+
+                        The returned offer cards should be
+                        inserted into #offers-slider-track.
+
+                        This means the frontend slider structure
+                        does not need to be rebuilt later.
+                    -->
+
+
+                </div>
+
+            </section>
+
+
+
+          <!-- =========================================================
+     SECTION 5 — SOCIAL MEDIA
+     ========================================================= -->
+
+<section class="social-section" id="social">
+
+    <div class="section-heading">
+        <span class="section-eyebrow">Stay Connected</span>
+
+        <h2>Follow Bolani</h2>
+
+        <p>
+            Connect with Bolani on social media and stay updated
+            with our latest products, offers and updates.
+        </p>
+    </div>
+
+
+    <!-- SOCIAL MEDIA CARDS -->
+    <div class="social-grid">
+
+        <!-- WhatsApp -->
+        <a
+            href="#"
+            class="social-card"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Bolani WhatsApp"
+        >
+
+            <div class="social-icon whatsapp-icon">
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+
+            <div class="social-card-content">
+
+                <h3>WhatsApp</h3>
+
+                <p>Chat with us</p>
+
+            </div>
+
+            <i class="fa-solid fa-arrow-up-right-from-square social-external-icon"></i>
+
+        </a>
+
+
+        <!-- TikTok -->
+        <a
+            href="#"
+            class="social-card"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Bolani TikTok"
+        >
+
+            <div class="social-icon tiktok-icon">
+                <i class="fa-brands fa-tiktok"></i>
+            </div>
+
+            <div class="social-card-content">
+
+                <h3>TikTok</h3>
+
+                <p>Follow our videos</p>
+
+            </div>
+
+            <i class="fa-solid fa-arrow-up-right-from-square social-external-icon"></i>
+
+        </a>
+
+
+        <!-- Facebook -->
+        <a
+            href="#"
+            class="social-card"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Bolani Facebook"
+        >
+
+            <div class="social-icon facebook-icon">
+                <i class="fa-brands fa-facebook-f"></i>
+            </div>
+
+            <div class="social-card-content">
+
+                <h3>Facebook</h3>
+
+                <p>Follow our page</p>
+
+            </div>
+
+            <i class="fa-solid fa-arrow-up-right-from-square social-external-icon"></i>
+
+        </a>
+
+
+        <!-- Instagram -->
+        <a
+            href="#"
+            class="social-card"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Bolani Instagram"
+        >
+
+            <div class="social-icon instagram-icon">
+                <i class="fa-brands fa-instagram"></i>
+            </div>
+
+            <div class="social-card-content">
+
+                <h3>Instagram</h3>
+
+                <p>See our latest posts</p>
+
+            </div>
+
+            <i class="fa-solid fa-arrow-up-right-from-square social-external-icon"></i>
+
+        </a>
+
+
+        <!-- YouTube -->
+        <a
+            href="#"
+            class="social-card"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Bolani YouTube"
+        >
+
+            <div class="social-icon youtube-icon">
+                <i class="fa-brands fa-youtube"></i>
+            </div>
+
+            <div class="social-card-content">
+
+                <h3>YouTube</h3>
+
+                <p>Watch our videos</p>
+
+            </div>
+
+            <i class="fa-solid fa-arrow-up-right-from-square social-external-icon"></i>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SECTION 6 — FOOTER
+     ========================================================= -->
+
+<footer class="site-footer" id="contact">
+
+    <!-- FOOTER BACKGROUND OVERLAY -->
+    <div class="footer-background"></div>
+
+
+    <!-- FOOTER CONTENT -->
+    <div class="footer-main">
+
+        <!-- BRAND -->
+        <div class="footer-brand">
+
+            <a href="#home" class="footer-logo">
+                Bolani
+            </a>
+
+            <p class="footer-description">
+                Quality products, sports essentials,
+                garments and modern tech gadgets.
+            </p>
+
+        </div>
+
+
+        <!-- QUICK LINKS -->
+        <div class="footer-column">
+
+            <h3>Quick Links</h3>
+
+            <ul>
+
+                <li>
+                    <a href="#home">Home</a>
+                </li>
+
+                <li>
+                    <a href="#collection">Collection</a>
+                </li>
+
+                <li>
+                    <a href="#social">Social Media</a>
+                </li>
+
+                <li>
+                    <a href="#offers">Offers</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- COLLECTION -->
+        <div class="footer-column">
+
+            <h3>Collections</h3>
+
+            <ul>
+
+                <li>
+                    <a href="#">Garments</a>
+                </li>
+
+                <li>
+                    <a href="#">Sports &amp; Gym</a>
+                </li>
+
+                <li>
+                    <a href="#">Tech Gadgets</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- CONTACT -->
+        <div class="footer-column footer-contact">
+
+            <h3>Contact</h3>
+
+            <p>
+                <i class="fa-brands fa-whatsapp"></i>
+                WhatsApp
+            </p>
+
+            <p>
+                <i class="fa-solid fa-envelope"></i>
+                Contact Bolani
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         FOOTER BOTTOM STRIP
+         ===================================================== -->
+
+    <div class="footer-bottom">
+
+        <p>
+            © <span class="current-year">2026</span>
+            Bolani. All Rights Reserved.
+        </p>
+
+        <p class="footer-created-by">
+            Web Created by <strong>Amin Bolani</strong>
+        </p>
+
+    </div>
+
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a
+        href="#"
+        class="floating-whatsapp"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contact Bolani on WhatsApp"
+    >
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+</footer>
+
+
+    </div>
+
+
+
+    <!-- =========================================================
+         JAVASCRIPT FILES
+         ========================================================= -->
+
+    <!-- Main Website JavaScript -->
+    <script src="js/script.js"></script>
+
+    <!-- Animation JavaScript -->
+    <script src="js/animation.js"></script>
+
+
+</body>
+
+</html>
+

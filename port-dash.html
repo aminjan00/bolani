@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOLANI - Admin Portal Dashboard</title>
+  <meta name="robots" content="noindex, nofollow">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* ==========================================================================
+       RESET & BASE STYLES
+       ========================================================================== */
+    :root {
+      --bg-main: #f4f6f9;
+      --sidebar-bg: #1e293b;
+      --sidebar-hover: #334155;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --accent: #10b981;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --border-color: #e2e8f0;
+      --card-bg: #ffffff;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+      --radius: 8px;
+      --transition: all 0.25s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ==========================================================================
+       DASHBOARD LAYOUT (SIDEBAR & MAIN CONTENT)
+       ========================================================================== */
+    .app-container {
+      display: flex;
+      flex: 1;
+      min-height: 100vh;
+    }
+
+    /* Left Sidebar */
+    .sidebar {
+      width: 280px;
+      background-color: var(--sidebar-bg);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+      z-index: 100;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .sidebar-header {
+      padding: 24px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-logo {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-badge {
+      font-size: 10px;
+      background: var(--primary);
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .sidebar-nav {
+      padding: 20px 0;
+      flex: 1;
+    }
+
+    .nav-category {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #94a3b8;
+      padding: 12px 20px 6px;
+      font-weight: 700;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 20px;
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: var(--transition);
+      border-left: 4px solid transparent;
+      cursor: pointer;
+    }
+
+    .nav-item:hover, .nav-item.active {
+      background-color: var(--sidebar-hover);
+      color: #ffffff;
+      border-left-color: var(--primary);
+    }
+
+    .nav-item i {
+      width: 20px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .sidebar-footer {
+      padding: 16px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 13px;
+      color: #94a3b8;
+    }
+
+    /* Main Content Area */
+    .main-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0; /* Prevents overflow */
+    }
+
+    /* Top Navigation Header */
+    .top-header {
+      background-color: var(--card-bg);
+      height: 64px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 90;
+    }
+
+    .toggle-sidebar-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: var(--text-main);
+      cursor: pointer;
+      display: none;
+    }
+
+    .header-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background-color: #dbeafe;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    /* Page Content */
+    .content-container {
+      padding: 24px;
+      flex: 1;
+    }
+
+    /* ==========================================================================
+       CARDS & SECTIONS
+       ========================================================================== */
+    .section-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fafafa;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    /* ==========================================================================
+       FORM CONTROLS & UI ELEMENTS
+       ========================================================================== */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="url"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      font-size: 14px;
+      outline: none;
+      transition: var(--transition);
+      background-color: #ffffff;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background-color: #e2e8f0;
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background-color: #cbd5e1;
+    }
+
+    .btn-danger {
+      background-color: var(--danger);
+      color: #ffffff;
+    }
+
+    .btn-danger:hover {
+      background-color: #dc2626;
+    }
+
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+
+    /* Tag Inputs (Sizes & Colors) */
+    .tag-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 6px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      min-height: 42px;
+      align-items: center;
+    }
+
+    .tag {
+      background-color: #eff6ff;
+      color: var(--primary);
+      border: 1px solid #bfdbfe;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tag i {
+      cursor: pointer;
+      color: #93c5fd;
+    }
+
+    .tag i:hover {
+      color: var(--danger);
+    }
+
+    .tag-input {
+      border: none !important;
+      padding: 4px 8px !important;
+      flex: 1;
+      min-width: 100px;
+    }
+
+    /* ==========================================================================
+       IMAGE UPLOADER & PREVIEW SYSTEM
+       ========================================================================== */
+    .upload-zone {
+      border: 2px dashed #cbd5e1;
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+      background-color: #f8fafc;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .upload-zone:hover {
+      border-color: var(--primary);
+      background-color: #eff6ff;
+    }
+
+    .upload-zone i {
+      font-size: 28px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .preview-card {
+      position: relative;
+      width: 100%;
+      padding-top: 100%; /* 1:1 Aspect Ratio default */
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      background-color: #f1f5f9;
+    }
+
+    .preview-card.offer-aspect {
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    }
+
+    .preview-card.product-aspect {
+      padding-top: 125%; /* 4:5 Vertical Social Aspect Ratio */
+    }
+
+    .preview-card img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .remove-btn {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      background-color: rgba(239, 68, 68, 0.9);
+      color: white;
+      border: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ==========================================================================
+       FILTER TABS & TABLES
+       ========================================================================== */
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 16px;
+    }
+
+    .tab-btn {
+      padding: 8px 16px;
+      border: 1px solid var(--border-color);
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background-color: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th {
+      background-color: #f8fafc;
+      padding: 12px 16px;
+      font-weight: 700;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: middle;
+    }
+
+    .table-img {
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .badge {
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .badge-success { background-color: #d1fae5; color: #047857; }
+    .badge-info { background-color: #dbeafe; color: #1d4ed8; }
+
+    /* Action Buttons */
+    .action-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    /* Delivery Charges Table Layout */
+    .delivery-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 20px;
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: white;
+      border-radius: var(--radius);
+      width: 90%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    /* ==========================================================================
+       RESPONSIVE MEDIA QUERIES
+       ========================================================================== */
+    @media (max-width: 992px) {
+      .delivery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        position: fixed;
+        left: -280px;
+      }
+
+      .sidebar.active {
+        left: 0;
+      }
+
+      .toggle-sidebar-btn {
+        display: block;
+      }
+
+      .content-container {
+        padding: 16px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- ==========================================================================
+         LEFT SIDEBAR NAVIGATION
+         ========================================================================== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="#" class="brand-logo">
+          BOLANI <span class="brand-badge">Admin</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-category">Management</div>
+        <a class="nav-item active" onclick="switchSection('section-offers')">
+          <i class="fa-solid fa-bullhorn"></i> Offers Upload
+        </a>
+        <a class="nav-item" onclick="switchSection('section-products')">
+          <i class="fa-solid fa-box-archive"></i> Product Upload
+        </a>
+        <a class="nav-item" onclick="switchSection('section-filters')">
+          <i class="fa-solid fa-filter"></i> Category Filters
+        </a>
+        <a class="nav-item" onclick="switchSection('section-delivery')">
+          <i class="fa-solid fa-truck-fast"></i> Delivery Charges
+        </a>
+
+        <div class="nav-category">Live Inventory</div>
+        <a class="nav-item" onclick="switchSection('section-manage-products')">
+          <i class="fa-solid fa-list-check"></i> Manage Products
+        </a>
+        <a class="nav-item" onclick="switchSection('section-manage-offers')">
+          <i class="fa-solid fa-images"></i> Manage Offers
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div>BOLANI Dashboard v1.0</div>
+        <small style="color: #64748b;">Secure Session Active</small>
+      </div>
+    </aside>
+
+    <!-- ==========================================================================
+         RIGHT MAIN CONTENT AREA
+         ========================================================================== -->
+    <div class="main-wrapper">
+      
+      <!-- Top Header Bar -->
+      <header class="top-header">
+        <button class="toggle-sidebar-btn" onclick="toggleSidebar()">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="header-title" id="page-title">Offer Post Management</div>
+        <div class="user-profile">
+          <div class="avatar"><i class="fa-solid fa-user-shield"></i></div>
+          <span style="font-size: 14px; font-weight: 600;">Owner</span>
+        </div>
+      </header>
+
+      <!-- Main Dashboard Content Container -->
+      <main class="content-container">
+
+        <!-- ====================================================================
+             1. OFFER POST UPLOAD SECTION
+             ==================================================================== -->
+        <section id="section-offers" class="dashboard-section">
+          <div class="section-grid">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title"><i class="fa-solid fa-upload"></i> Create Homepage Offer Banner</div>
+              </div>
+              <div class="card-body">
+                <form id="offerForm" onsubmit="handleOfferSubmit(event)">
+                  <div class="form-grid">
+                    <div class="form-group full-width">
+                      <label>Offer Image (Recommended 1920×1080 - Auto Compressed)</label>
+                      <div class="upload-zone" onclick="document.getElementById('offerImageInput').click()">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <p>Click or tap to select offer image from gallery/device</p>
+                        <small style="color: var(--text-muted);">Will be optimized to low KB before upload</small>
+                      </div>
+                      <input type="file" id="offerImageInput" accept="image/*" style="display:none;" onchange="handleSingleImageSelect(event, 'offer-preview-container', 'offer')">
+                      <div id="offer-preview-container" class="preview-grid"></div>
+                    </div>
+
+                    <div class="form-group full-width">
+                      <label>Offer Destination Link / URL</label>
+                      <input type="text" id="offerLink" placeholder="e.g., /garments.html or https://..." required>
+                    </div>
+
+                    <div class="form-group full-width">
+                      <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Upload Offer</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             2. DYNAMIC CATEGORY FILTER CREATION SECTION
+             ==================================================================== -->
+        <section id="section-filters" class="dashboard-section" style="display:none;">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title"><i class="fa-solid fa-tags"></i> Create Dynamic Category Filters</div>
+            </div>
+            <div class="card-body">
+              <form id="filterForm" onsubmit="handleFilterSubmit(event)">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label>Page Category</label>
+                    <select id="filterPageCategory" onchange="updateSubCategories('filterPageCategory', 'filterProductCategory')" required>
+                      <option value="">Select Page</option>
+                      <option value="Garments">Garments</option>
+                      <option value="Sports Shoes">Sports Shoes</option>
+                      <option value="Sports Gym">Sports & Gym</option>
+                      <option value="Tech Gadgets">Tech Gadgets</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Product Category</label>
+                    <select id="filterProductCategory" required>
+                      <option value="">Select Sub-Category First</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label>New Filter Name</label>
+                    <input type="text" id="filterName" placeholder="e.g., Adidas T-Shirts, Silk T-Shirts" required>
+                  </div>
+
+                  <div class="form-group full-width">
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Save Dynamic Filter</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             3. PRODUCT UPLOAD SECTION
+             ==================================================================== -->
+        <section id="section-products" class="dashboard-section" style="display:none;">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title"><i class="fa-solid fa-box"></i> Add New Product</div>
+            </div>
+            <div class="card-body">
+              <form id="productForm" onsubmit="handleProductSubmit(event)">
+                <div class="form-grid">
+                  
+                  <!-- 1. Product Name -->
+                  <div class="form-group full-width">
+                    <label>Product Name</label>
+                    <input type="text" id="prodName" placeholder="Enter complete product title" required>
+                  </div>
+
+                  <!-- 2. Description -->
+                  <div class="form-group full-width">
+                    <label>Description</label>
+                    <textarea id="prodDesc" rows="3" placeholder="Enter full detailed description" required></textarea>
+                  </div>
+
+                  <!-- 3. Page Category -->
+                  <div class="form-group">
+                    <label>Page Category</label>
+                    <select id="prodPageCategory" onchange="onPageCategoryChange()" required>
+                      <option value="">Select Page</option>
+                      <option value="Garments">Garments</option>
+                      <option value="Sports Shoes">Sports Shoes</option>
+                      <option value="Sports Gym">Sports & Gym</option>
+                      <option value="Tech Gadgets">Tech Gadgets</option>
+                    </select>
+                  </div>
+
+                  <!-- 4. Product Category -->
+                  <div class="form-group">
+                    <label>Product Sub-Category</label>
+                    <select id="prodProductCategory" onchange="loadDynamicFilters()" required>
+                      <option value="">Select Sub-Category</option>
+                    </select>
+                  </div>
+
+                  <!-- 5. Product Filter -->
+                  <div class="form-group">
+                    <label>Dynamic Filter</label>
+                    <select id="prodFilter">
+                      <option value="">Select Filter (Optional)</option>
+                    </select>
+                  </div>
+
+                  <!-- 6. Price -->
+                  <div class="form-group">
+                    <label>Price (PKR)</label>
+                    <input type="number" id="prodPrice" min="0" placeholder="e.g. 2500" required>
+                  </div>
+
+                  <!-- 7. Main Product Image -->
+                  <div class="form-group full-width">
+                    <label>Main Product Image (Vertical Social Ratio - Optimized Compression)</label>
+                    <div class="upload-zone" onclick="document.getElementById('mainImgInput').click()">
+                      <i class="fa-solid fa-image"></i>
+                      <p>Select Main Cover Image</p>
+                    </div>
+                    <input type="file" id="mainImgInput" accept="image/*" style="display:none;" onchange="handleSingleImageSelect(event, 'main-img-preview', 'product')">
+                    <div id="mainImgPreviewContainer" class="preview-grid">
+                      <div id="main-img-preview"></div>
+                    </div>
+                  </div>
+
+                  <!-- 8. Additional Product Images -->
+                  <div class="form-group full-width">
+                    <label>Additional Images (4-5 Images showing angles/colors)</label>
+                    <div class="upload-zone" onclick="document.getElementById('addImgInput').click()">
+                      <i class="fa-solid fa-images"></i>
+                      <p>Select Additional Variant Images</p>
+                    </div>
+                    <input type="file" id="addImgInput" accept="image/*" multiple style="display:none;" onchange="handleMultipleImagesSelect(event, 'additional-img-preview')">
+                    <div id="additional-img-preview" class="preview-grid"></div>
+                  </div>
+
+                  <!-- 9. Sizes (Optional) -->
+                  <div class="form-group full-width">
+                    <label>Available Sizes (Press Enter to add size, e.g. S, M, L or 40, 41)</label>
+                    <div class="tag-container" id="sizesContainer">
+                      <input type="text" id="sizeInput" class="tag-input" placeholder="Add size and press Enter" onkeydown="handleTagInput(event, 'size')">
+                    </div>
+                  </div>
+
+                  <!-- 10. Colors (Optional) -->
+                  <div class="form-group full-width">
+                    <label>Available Colors (Press Enter to add color, e.g. Red, Black, Blue)</label>
+                    <div class="tag-container" id="colorsContainer">
+                      <input type="text" id="colorInput" class="tag-input" placeholder="Add color and press Enter" onkeydown="handleTagInput(event, 'color')">
+                    </div>
+                  </div>
+
+                  <!-- Submit -->
+                  <div class="form-group full-width">
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Product</button>
+                  </div>
+
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             4. DELIVERY CHARGES MANAGEMENT SECTION
+             ==================================================================== -->
+        <section id="section-delivery" class="dashboard-section" style="display:none;">
+          <div class="delivery-grid">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title"><i class="fa-solid fa-map-location-dot"></i> Add Delivery Charge</div>
+              </div>
+              <div class="card-body">
+                <form id="deliveryForm" onsubmit="handleDeliverySubmit(event)">
+                  <div class="form-group" style="margin-bottom: 12px;">
+                    <label>Country</label>
+                    <input type="text" id="delCountry" value="Pakistan" required>
+                  </div>
+                  <div class="form-group" style="margin-bottom: 12px;">
+                    <label>City</label>
+                    <input type="text" id="delCity" placeholder="e.g. Karachi, Lahore" required>
+                  </div>
+                  <div class="form-group" style="margin-bottom: 16px;">
+                    <label>Delivery Charge (PKR)</label>
+                    <input type="number" id="delCharge" placeholder="200" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fa-solid fa-floppy-disk"></i> Save Rate</button>
+                </form>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title"><i class="fa-solid fa-list"></i> Active Delivery Rates</div>
+              </div>
+              <div class="card-body">
+                <div class="table-wrapper">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Country</th>
+                        <th>City</th>
+                        <th>Charge (PKR)</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="deliveryTableBody">
+                      <!-- Rendered dynamically -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             5. LIVE INVENTORY - MANAGE PRODUCTS
+             ==================================================================== -->
+        <section id="section-manage-products" class="dashboard-section" style="display:none;">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title"><i class="fa-solid fa-boxes-stacked"></i> All Products Inventory</div>
+            </div>
+            <div class="card-body">
+              
+              <!-- Filter Tabs -->
+              <div class="filter-tabs">
+                <button class="tab-btn active" onclick="filterProductList('All', this)">All Products</button>
+                <button class="tab-btn" onclick="filterProductList('Garments', this)">Garments</button>
+                <button class="tab-btn" onclick="filterProductList('Sports Shoes', this)">Sports Shoes</button>
+                <button class="tab-btn" onclick="filterProductList('Sports Gym', this)">Sports & Gym</button>
+                <button class="tab-btn" onclick="filterProductList('Tech Gadgets', this)">Tech Gadgets</button>
+              </div>
+
+              <div class="table-wrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Image</th>
+                      <th>Name</th>
+                      <th>Page Category</th>
+                      <th>Sub-Category</th>
+                      <th>Price</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="productTableBody">
+                    <!-- Rendered dynamically -->
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             6. LIVE INVENTORY - MANAGE OFFERS
+             ==================================================================== -->
+        <section id="section-manage-offers" class="dashboard-section" style="display:none;">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title"><i class="fa-solid fa-rectangle-ad"></i> Active Homepage Offers</div>
+            </div>
+            <div class="card-body">
+              <div class="table-wrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Banner Image</th>
+                      <th>Destination Link</th>
+                      <th>Status</th>
+                      <th>Created Date</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="offerTableBody">
+                    <!-- Rendered dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       EDIT PRODUCT MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="editProductModal">
+    <div class="modal">
+      <div style="display:flex; justify-style:space-between; align-items:center; margin-bottom:16px;">
+        <h3>Edit Product</h3>
+        <button class="remove-btn" style="position:static;" onclick="closeModal('editProductModal')">✕</button>
+      </div>
+      <form id="editProductForm" onsubmit="saveEditedProduct(event)">
+        <input type="hidden" id="editProdId">
+        <div class="form-group" style="margin-bottom:12px;">
+          <label>Product Title</label>
+          <input type="text" id="editProdName" required>
+        </div>
+        <div class="form-group" style="margin-bottom:12px;">
+          <label>Price (PKR)</label>
+          <input type="number" id="editProdPrice" required>
+        </div>
+        <div class="form-group" style="margin-bottom:16px;">
+          <label>Description</label>
+          <textarea id="editProdDesc" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Save Changes</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT ARCHITECTURE & LIVE BACKEND API LOGIC
+       ========================================================================== -->
+  <script>
+    // ========================================
+    // GLOBAL CONFIG & STATE MANAGEMENT
+    // ========================================
+    const API_BASE_URL = "http://localhost:5000/api"; // Deployed URL: "https://bolani-backend.vercel.app/api"
+
+    let currentMainImageBase64 = "";
+    let currentOfferImageBase64 = "";
+    let currentAdditionalImagesBase64 = [];
+    let currentSizes = [];
+    let currentColors = [];
+
+    // Category Mapping Definitions
+    const CATEGORY_MAP = {
+      "Garments": ["T-Shirts", "Trousers", "Track Suits"],
+      "Sports Shoes": ["Running Shoes", "Gym Shoes", "Sports Shoes"],
+      "Sports Gym": ["Sports Equipment", "Fitness Workout Gear", "Gym Accessories"],
+      "Tech Gadgets": ["Bluetooth Headphones", "Mic Stands", "New Tech Gadgets"]
+    };
+
+    // Live Data Stores
+    let dynamicFiltersStore = [];
+    let deliveryStore = [];
+    let offersStore = [];
+    let productsStore = [];
+
+    // ========================================
+    // INITIALIZATION & AUTH CHECK
+    // ========================================
+    document.addEventListener("DOMContentLoaded", () => {
+      checkAdminAuthentication();
+      fetchAllDataFromAPI();
+    });
+
+    // Verify Admin JWT Session
+    function checkAdminAuthentication() {
+      const token = localStorage.getItem("bolani_token");
+      if (!token) {
+        alert("Session expired or unauthorized access. Please login first.");
+        window.location.href = "port-log.html";
+      }
+    }
+
+    // Helper for Auth Headers
+    function getAuthHeaders() {
+      const token = localStorage.getItem("bolani_token");
+      return {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      };
+    }
+
+    // Load All Live Data from MongoDB API
+    async function fetchAllDataFromAPI() {
+      await fetchOffersFromAPI();
+      await fetchDeliveryFromAPI();
+      await fetchProductsFromAPI();
+      await fetchFiltersFromAPI();
+    }
+
+    // Sidebar Toggle for Mobile
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+
+    // Switch Admin Dashboard Section
+    function switchSection(sectionId) {
+      document.querySelectorAll(".dashboard-section").forEach(sec => sec.style.display = "none");
+      document.getElementById(sectionId).style.display = "block";
+      
+      document.querySelectorAll(".nav-item").forEach(nav => nav.classList.remove("active"));
+      if (event && event.currentTarget) {
+        event.currentTarget.classList.add("active");
+      }
+
+      // Update Top Header Title
+      const titles = {
+        'section-offers': 'Offer Post Management',
+        'section-products': 'Product Upload Portal',
+        'section-filters': 'Category Filter Generator',
+        'section-delivery': 'Delivery Charges Configuration',
+        'section-manage-products': 'Product Inventory Management',
+        'section-manage-offers': 'Offer Banner Management'
+      };
+      document.getElementById("page-title").innerText = titles[sectionId] || "Dashboard";
+
+      // Mobile auto-close sidebar
+      if(window.innerWidth <= 768) {
+        document.getElementById("sidebar").classList.remove("active");
+      }
+    }
+
+    // Dynamic Category Cascade
+    function updateSubCategories(pageSelectId, subSelectId) {
+      const pageVal = document.getElementById(pageSelectId).value;
+      const subSelect = document.getElementById(subSelectId);
+      subSelect.innerHTML = '<option value="">Select Sub-Category</option>';
+
+      if (pageVal && CATEGORY_MAP[pageVal]) {
+        CATEGORY_MAP[pageVal].forEach(sub => {
+          const opt = document.createElement("option");
+          opt.value = sub;
+          opt.textContent = sub;
+          subSelect.appendChild(opt);
+        });
+      }
+    }
+
+    function onPageCategoryChange() {
+      updateSubCategories('prodPageCategory', 'prodProductCategory');
+      loadDynamicFilters();
+    }
+
+    function loadDynamicFilters() {
+      const pageVal = document.getElementById("prodPageCategory").value;
+      const subVal = document.getElementById("prodProductCategory").value;
+      const filterSelect = document.getElementById("prodFilter");
+
+      filterSelect.innerHTML = '<option value="">Select Filter (Optional)</option>';
+
+      const matches = dynamicFiltersStore.filter(f => f.pageCategory === pageVal && f.productCategory === subVal);
+      matches.forEach(m => {
+        const opt = document.createElement("option");
+        opt.value = m.filterName;
+        opt.textContent = m.filterName;
+        filterSelect.appendChild(opt);
+      });
+    }
+
+    // ========================================
+    // IMAGE COMPRESSION SYSTEM (MB to KB)
+    // ========================================
+    function compressImage(file, maxWidth, maxHeight, quality, callback) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (event) => {
+        const img = new Image();
+        img.src = event.target.result;
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > maxWidth) {
+              height = Math.round((height * maxWidth) / width);
+              width = maxWidth;
+            }
+          } else {
+            if (height > maxHeight) {
+              width = Math.round((width * maxHeight) / height);
+              height = maxHeight;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, width, height);
+
+          // Compress to low KB Base64 JPEG
+          const dataUrl = canvas.toDataURL("image/jpeg", quality);
+          callback(dataUrl);
+        };
+      };
+    }
+
+    // Single Image Selector Handler
+    function handleSingleImageSelect(event, previewContainerId, type) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const maxDim = type === 'offer' ? 1920 : 1000;
+      const aspectClass = type === 'offer' ? 'offer-aspect' : 'product-aspect';
+
+      compressImage(file, maxDim, maxDim, 0.7, (compressedBase64) => {
+        if (type === 'offer') currentOfferImageBase64 = compressedBase64;
+        if (type === 'product') currentMainImageBase64 = compressedBase64;
+
+        const container = document.getElementById(previewContainerId);
+        container.innerHTML = `
+          <div class="preview-card ${aspectClass}">
+            <img src="${compressedBase64}" alt="Preview">
+            <button type="button" class="remove-btn" onclick="removeSingleImage('${previewContainerId}', '${type}')">✕</button>
+          </div>
+        `;
+      });
+    }
+
+    function removeSingleImage(previewContainerId, type) {
+      document.getElementById(previewContainerId).innerHTML = "";
+      if (type === 'offer') {
+        currentOfferImageBase64 = "";
+        document.getElementById("offerImageInput").value = "";
+      }
+      if (type === 'product') {
+        currentMainImageBase64 = "";
+        document.getElementById("mainImgInput").value = "";
+      }
+    }
+
+    // Multiple Images Selector Handler
+    function handleMultipleImagesSelect(event, previewContainerId) {
+      const files = Array.from(event.target.files);
+      if (!files.length) return;
+
+      files.forEach(file => {
+        compressImage(file, 800, 1000, 0.7, (compressedBase64) => {
+          currentAdditionalImagesBase64.push(compressedBase64);
+          renderAdditionalPreviews(previewContainerId);
+        });
+      });
+    }
+
+    function renderAdditionalPreviews(containerId) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = "";
+      currentAdditionalImagesBase64.forEach((imgBase64, index) => {
+        const card = document.createElement("div");
+        card.className = "preview-card product-aspect";
+        card.innerHTML = `
+          <img src="${imgBase64}" alt="Additional Preview ${index + 1}">
+          <button type="button" class="remove-btn" onclick="removeAdditionalImage(${index}, '${containerId}')">✕</button>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function removeAdditionalImage(index, containerId) {
+      currentAdditionalImagesBase64.splice(index, 1);
+      renderAdditionalPreviews(containerId);
+    }
+
+    // ========================================
+    // SIZES & COLORS TAG MANAGEMENT
+    // ========================================
+    function handleTagInput(event, type) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        const input = event.target;
+        const val = input.value.trim();
+        if (!val) return;
+
+        if (type === 'size' && !currentSizes.includes(val)) {
+          currentSizes.push(val);
+          renderTags('sizesContainer', currentSizes, 'size');
+        } else if (type === 'color' && !currentColors.includes(val)) {
+          currentColors.push(val);
+          renderTags('colorsContainer', currentColors, 'color');
+        }
+        input.value = "";
+      }
+    }
+
+    function renderTags(containerId, array, type) {
+      const container = document.getElementById(containerId);
+      const inputId = type === 'size' ? 'sizeInput' : 'colorInput';
+      const placeholder = type === 'size' ? 'Add size and press Enter' : 'Add color and press Enter';
+
+      container.innerHTML = "";
+      array.forEach((item, idx) => {
+        const tag = document.createElement("span");
+        tag.className = "tag";
+        tag.innerHTML = `${item} <i class="fa-solid fa-xmark" onclick="removeTag(${idx}, '${type}')"></i>`;
+        container.appendChild(tag);
+      });
+
+      const input = document.createElement("input");
+      input.type = "text";
+      input.id = inputId;
+      input.className = "tag-input";
+      input.placeholder = placeholder;
+      input.onkeydown = (e) => handleTagInput(e, type);
+      container.appendChild(input);
+      input.focus();
+    }
+
+    function removeTag(index, type) {
+      if (type === 'size') {
+        currentSizes.splice(index, 1);
+        renderTags('sizesContainer', currentSizes, 'size');
+      } else {
+        currentColors.splice(index, 1);
+        renderTags('colorsContainer', currentColors, 'color');
+      }
+    }
+
+    // ========================================
+    // LIVE API FETCH & SUBMIT HANDLERS
+    // ========================================
+
+    // 1. OFFERS (Fetch & Create via Cloudinary/MongoDB)
+    async function fetchOffersFromAPI() {
+      try {
+        const res = await fetch(`${API_BASE_URL}/offers`);
+        const result = await res.json();
+        if (result.success) {
+          offersStore = result.data;
+          renderOfferTable();
+        }
+      } catch (e) {
+        console.warn("Backend offline for offers.");
+      }
+    }
+
+    async function handleOfferSubmit(e) {
+      e.preventDefault();
+      if (!currentOfferImageBase64) {
+        alert("Please select an offer banner image!");
+        return;
+      }
+
+      const payload = {
+        imageBase64: currentOfferImageBase64,
+        link: document.getElementById("offerLink").value
+      };
+
+      try {
+        const res = await fetch(`${API_BASE_URL}/offers`, {
+          method: "POST",
+          headers: getAuthHeaders(),
+          body: JSON.stringify(payload)
+        });
+        const result = await res.json();
+
+        if (result.success) {
+          alert("Offer banner uploaded to Cloudinary & saved!");
+          e.target.reset();
+          removeSingleImage('offer-preview-container', 'offer');
+          fetchOffersFromAPI();
+        } else {
+          alert("Error: " + result.message);
+        }
+      } catch (err) {
+        alert("Failed to connect to server. Check backend connection.");
+      }
+    }
+
+    async function deleteOffer(id) {
+      if (!confirm("Delete this offer banner from Cloudinary & Database?")) return;
+      try {
+        const res = await fetch(`${API_BASE_URL}/offers/${id}`, {
+          method: "DELETE",
+          headers: getAuthHeaders()
+        });
+        const result = await res.json();
+        if (result.success) {
+          alert("Offer deleted!");
+          fetchOffersFromAPI();
+        }
+      } catch (err) {
+        alert("Delete failed.");
+      }
+    }
+
+    // 2. DYNAMIC FILTERS (Fetch & Create)
+    async function fetchFiltersFromAPI() {
+      try {
+        const res = await fetch(`${API_BASE_URL}/filters`);
+        const result = await res.json();
+        if (result.success) {
+          dynamicFiltersStore = result.data;
+        }
+      } catch (e) {
+        console.warn("Backend offline for filters.");
+      }
+    }
+
+    async function handleFilterSubmit(e) {
+      e.preventDefault();
+      const pageCat = document.getElementById("filterPageCategory").value;
+      const prodCat = document.getElementById("filterProductCategory").value;
+      const filterName = document.getElementById("filterName").value.trim();
+
+      try {
+        const res = await fetch(`${API_BASE_URL}/filters`, {
+          method: "POST",
+          headers: getAuthHeaders(),
+          body: JSON.stringify({ pageCategory: pageCat, productCategory: prodCat, filterName })
+        });
+        const result = await res.json();
+
+        if (result.success) {
+          alert(`Filter "${filterName}" created successfully!`);
+          e.target.reset();
+          fetchFiltersFromAPI();
+        } else {
+          alert("Error: " + result.message);
+        }
+      } catch (err) {
+        alert("Failed to save filter.");
+      }
+    }
+
+    // 3. PRODUCTS (Fetch, Upload to Cloudinary & Manage)
+    async function fetchProductsFromAPI() {
+      try {
+        const res = await fetch(`${API_BASE_URL}/products`);
+        const result = await res.json();
+        if (result.success) {
+          productsStore = result.data;
+          renderProductTable("All");
+        }
+      } catch (e) {
+        console.warn("Backend offline for products.");
+      }
+    }
+
+    async function handleProductSubmit(e) {
+      e.preventDefault();
+      if (!currentMainImageBase64) {
+        alert("Please select a main cover image!");
+        return;
+      }
+
+      const payload = {
+        name: document.getElementById("prodName").value,
+        description: document.getElementById("prodDesc").value,
+        pageCategory: document.getElementById("prodPageCategory").value,
+        productCategory: document.getElementById("prodProductCategory").value,
+        filter: document.getElementById("prodFilter").value,
+        price: parseFloat(document.getElementById("prodPrice").value),
+        mainImageBase64: currentMainImageBase64,
+        additionalImagesBase64: currentAdditionalImagesBase64,
+        sizes: currentSizes,
+        colors: currentColors
+      };
+
+      try {
+        const res = await fetch(`${API_BASE_URL}/products`, {
+          method: "POST",
+          headers: getAuthHeaders(),
+          body: JSON.stringify(payload)
+        });
+        const result = await res.json();
+
+        if (result.success) {
+          alert("Product uploaded successfully to Cloudinary & MongoDB!");
+          e.target.reset();
+          removeSingleImage('main-img-preview', 'product');
+          currentAdditionalImagesBase64 = [];
+          renderAdditionalPreviews('additional-img-preview');
+          currentSizes = [];
+          renderTags('sizesContainer', currentSizes, 'size');
+          currentColors = [];
+          renderTags('colorsContainer', currentColors, 'color');
+          fetchProductsFromAPI();
+        } else {
+          alert("Error: " + result.message);
+        }
+      } catch (err) {
+        alert("Upload failed. Make sure server.js is running.");
+      }
+    }
+
+    async function deleteProduct(id) {
+      if (!confirm("Are you sure you want to delete this product?")) return;
+      try {
+        const res = await fetch(`${API_BASE_URL}/products/${id}`, {
+          method: "DELETE",
+          headers: getAuthHeaders()
+        });
+        const result = await res.json();
+        if (result.success) {
+          alert("Product deleted from Cloudinary & Database!");
+          fetchProductsFromAPI();
+        }
+      } catch (err) {
+        alert("Delete failed.");
+      }
+    }
+
+    // 4. DELIVERY CHARGES (Fetch & Create)
+    async function fetchDeliveryFromAPI() {
+      try {
+        const res = await fetch(`${API_BASE_URL}/delivery`);
+        const result = await res.json();
+        if (result.success) {
+          deliveryStore = result.data;
+          renderDeliveryTable();
+        }
+      } catch (e) {
+        console.warn("Backend offline for delivery rates.");
+      }
+    }
+
+    async function handleDeliverySubmit(e) {
+      e.preventDefault();
+      const country = document.getElementById("delCountry").value;
+      const city = document.getElementById("delCity").value;
+      const charge = parseFloat(document.getElementById("delCharge").value);
+
+      try {
+        const res = await fetch(`${API_BASE_URL}/delivery`, {
+          method: "POST",
+          headers: getAuthHeaders(),
+          body: JSON.stringify({ country, city, charge })
+        });
+        const result = await res.json();
+
+        if (result.success) {
+          alert("Delivery charge saved!");
+          e.target.reset();
+          document.getElementById("delCountry").value = "Pakistan";
+          fetchDeliveryFromAPI();
+        } else {
+          alert("Error: " + result.message);
+        }
+      } catch (err) {
+        alert("Failed to save delivery rate.");
+      }
+    }
+
+    async function deleteDelivery(id) {
+      if (!confirm("Delete this city's delivery rate?")) return;
+      try {
+        const res = await fetch(`${API_BASE_URL}/delivery/${id}`, {
+          method: "DELETE",
+          headers: getAuthHeaders()
+        });
+        const result = await res.json();
+        if (result.success) {
+          fetchDeliveryFromAPI();
+        }
+      } catch (err) {
+        alert("Delete failed.");
+      }
+    }
+
+    // ========================================
+    // TABLE RENDERING FUNCTIONS
+    // ========================================
+    function renderOfferTable() {
+      const tbody = document.getElementById("offerTableBody");
+      tbody.innerHTML = "";
+      offersStore.forEach(o => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td><img src="${o.imageUrl}" class="table-img" style="width: 80px; height: 45px;" alt="Banner"></td>
+          <td><a href="${o.link}" target="_blank">${o.link}</a></td>
+          <td><span class="badge badge-success">${o.status || 'Active'}</span></td>
+          <td>${new Date(o.createdAt).toLocaleDateString()}</td>
+          <td>
+            <div class="action-btns">
+              <button class="btn btn-danger btn-sm" onclick="deleteOffer('${o._id || o.id}')"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderDeliveryTable() {
+      const tbody = document.getElementById("deliveryTableBody");
+      tbody.innerHTML = "";
+      deliveryStore.forEach(d => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${d.country}</td>
+          <td>${d.city}</td>
+          <td>PKR ${d.charge}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" onclick="deleteDelivery('${d._id || d.id}')"><i class="fa-solid fa-trash"></i></button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderProductTable(categoryFilter = "All") {
+      const tbody = document.getElementById("productTableBody");
+      tbody.innerHTML = "";
+
+      const filtered = categoryFilter === "All" 
+        ? productsStore 
+        : productsStore.filter(p => p.pageCategory === categoryFilter);
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color: var(--text-muted);">No products found in this category.</td></tr>`;
+        return;
+      }
+
+      filtered.forEach(p => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td><img src="${p.mainImage}" class="table-img" alt="${p.name}"></td>
+          <td><strong>${p.name}</strong></td>
+          <td><span class="badge badge-info">${p.pageCategory}</span></td>
+          <td>${p.productCategory}</td>
+          <td>PKR ${p.price}</td>
+          <td>
+            <div class="action-btns">
+              <button class="btn btn-secondary btn-sm" onclick="openEditProductModal('${p._id || p.id}')"><i class="fa-solid fa-pen"></i></button>
+              <button class="btn btn-danger btn-sm" onclick="deleteProduct('${p._id || p.id}')"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filterProductList(cat, btn) {
+      document.querySelectorAll(".filter-tabs .tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderProductTable(cat);
+    }
+
+    // Modal Operations
+    function openEditProductModal(id) {
+      const prod = productsStore.find(p => (p._id || p.id) === id);
+      if(!prod) return;
+
+      document.getElementById("editProdId").value = prod._id || prod.id;
+      document.getElementById("editProdName").value = prod.name;
+      document.getElementById("editProdPrice").value = prod.price;
+      document.getElementById("editProdDesc").value = prod.description || prod.desc;
+
+      document.getElementById("editProductModal").classList.add("active");
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove("active");
+    }
+
+    async function saveEditedProduct(e) {
+      e.preventDefault();
+      const id = document.getElementById("editProdId").value;
+
+      const payload = {
+        name: document.getElementById("editProdName").value,
+        price: parseFloat(document.getElementById("editProdPrice").value),
+        description: document.getElementById("editProdDesc").value
+      };
+
+      try {
+        const res = await fetch(`${API_BASE_URL}/products/${id}`, {
+          method: "PUT",
+          headers: getAuthHeaders(),
+          body: JSON.stringify(payload)
+        });
+        const result = await res.json();
+        if (result.success) {
+          alert("Product updated!");
+          closeModal("editProductModal");
+          fetchProductsFromAPI();
+        }
+      } catch (err) {
+        alert("Failed to update product.");
+      }
+    }
+  </script>
+</body>
+</html>

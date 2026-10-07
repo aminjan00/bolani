@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOLANI - Security Login Portal</title>
+  
+  <!-- SEO & Privacy Controls -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="BOLANI Private Portal Security Gateway">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* ==========================================================================
+       RESET & MODERN VARIABLE STYLES
+       ========================================================================== */
+    :root {
+      --bg-dark: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.75);
+      --border-color: rgba(255, 255, 255, 0.12);
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --accent: #38bdf8;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --danger: #ef4444;
+      --success: #10b981;
+      --radius: 12px;
+      --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 20px;
+    }
+
+    /* Interactive Ambient Canvas Background */
+    #ambient-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* ==========================================================================
+       LOGIN CARD CONTAINER
+       ========================================================================== */
+    .portal-container {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 420px;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .portal-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .brand-title {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: var(--text-main);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .brand-title span {
+      color: var(--accent);
+    }
+
+    .portal-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* Lock Badge Icon */
+    .security-badge {
+      width: 56px;
+      height: 56px;
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      color: var(--accent);
+      font-size: 22px;
+    }
+
+    /* ==========================================================================
+       FORM CONTROLS & UI INPUTS
+       ========================================================================== */
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+    }
+
+    .form-group label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-wrapper i.input-icon {
+      position: absolute;
+      left: 14px;
+      color: var(--text-muted);
+      font-size: 16px;
+      transition: var(--transition);
+    }
+
+    .input-wrapper input {
+      width: 100%;
+      padding: 12px 42px 12px 42px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-main);
+      font-size: 14px;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .input-wrapper input:focus {
+      border-color: var(--accent);
+      background: rgba(15, 23, 42, 0.85);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+    }
+
+    .input-wrapper input:focus + i.input-icon {
+      color: var(--accent);
+    }
+
+    /* Password Toggle Eye Icon */
+    .toggle-password {
+      position: absolute;
+      right: 14px;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 16px;
+      transition: var(--transition);
+      background: none;
+      border: none;
+    }
+
+    .toggle-password:hover {
+      color: var(--text-main);
+    }
+
+    /* Submit Button */
+    .btn-submit {
+      margin-top: 8px;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-submit:active {
+      transform: translateY(0);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* ==========================================================================
+       NOTIFICATION ALERT SYSTEM
+       ========================================================================== */
+    .alert {
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .alert-danger {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+    }
+
+    .alert-success {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #6ee7b7;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Portal Footer */
+    .portal-footer {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 11px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+      padding-top: 16px;
+    }
+
+    /* ==========================================================================
+       RESPONSIVE DESIGN
+       ========================================================================== */
+    @media (max-width: 480px) {
+      .portal-container {
+        padding: 32px 20px;
+      }
+
+      .brand-title {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Particle Canvas Background -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <!-- Login Card Portal -->
+  <div class="portal-container">
+    
+    <div class="portal-header">
+      <div class="security-badge">
+        <i class="fa-solid fa-shield-halved"></i>
+      </div>
+      <h1 class="brand-title">BOLANI <span>PORTAL</span></h1>
+      <p class="portal-subtitle">Owner Security Authentication</p>
+    </div>
+
+    <!-- Alert Message Box -->
+    <div id="alertBox" class="alert">
+      <i id="alertIcon" class="fa-solid fa-circle-exclamation"></i>
+      <span id="alertMsg">Invalid Credentials</span>
+    </div>
+
+    <!-- Owner Login Form -->
+    <form id="loginForm" class="login-form" onsubmit="handleLoginSubmit(event)" autocomplete="off">
+      
+      <!-- Admin Username -->
+      <div class="form-group">
+        <label for="username">Admin Username</label>
+        <div class="input-wrapper">
+          <input type="text" id="username" placeholder="Enter owner username" required autofocus>
+          <i class="fa-solid fa-user-gear input-icon"></i>
+        </div>
+      </div>
+
+      <!-- Admin Password -->
+      <div class="form-group">
+        <label for="password">Security Password</label>
+        <div class="input-wrapper">
+          <input type="password" id="password" placeholder="Enter secure password" required>
+          <i class="fa-solid fa-lock input-icon"></i>
+          <button type="button" class="toggle-password" onclick="togglePasswordVisibility()" aria-label="Toggle password visibility">
+            <i id="eyeIcon" class="fa-solid fa-eye"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" id="submitBtn" class="btn-submit">
+        <i class="fa-solid fa-right-to-bracket"></i> Authenticate Access
+      </button>
+
+    </form>
+
+    <div class="portal-footer">
+      <i class="fa-solid fa-lock"></i> Encrypted Gateway &bull; BOLANI Official System
+    </div>
+
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT AUTHENTICATION & LIVE BACKEND API LOGIC
+       ========================================================================== -->
+  <script>
+    // ========================================
+    // GLOBAL BACKEND API CONFIGURATION
+    // ========================================
+    const API_BASE_URL = "http://localhost:5000/api"; // Production: "https://bolani-backend.vercel.app/api"
+
+    // ========================================
+    // PASSWORD VISIBILITY TOGGLE
+    // ========================================
+    function togglePasswordVisibility() {
+      const passwordInput = document.getElementById("password");
+      const eyeIcon = document.getElementById("eyeIcon");
+
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        eyeIcon.classList.remove("fa-eye");
+        eyeIcon.classList.add("fa-eye-slash");
+      } else {
+        passwordInput.type = "password";
+        eyeIcon.classList.remove("fa-eye-slash");
+        eyeIcon.classList.add("fa-eye");
+      }
+    }
+
+    // ========================================
+    // ALERT SYSTEM
+    // ========================================
+    function showAlert(message, type = "danger") {
+      const alertBox = document.getElementById("alertBox");
+      const alertMsg = document.getElementById("alertMsg");
+      const alertIcon = document.getElementById("alertIcon");
+
+      alertMsg.textContent = message;
+      alertBox.className = `alert alert-${type}`;
+
+      if (type === "danger") {
+        alertIcon.className = "fa-solid fa-circle-exclamation";
+      } else {
+        alertIcon.className = "fa-solid fa-circle-check";
+      }
+
+      alertBox.style.display = "flex";
+    }
+
+    function hideAlert() {
+      document.getElementById("alertBox").style.display = "none";
+    }
+
+    // ========================================
+    // REAL BACKEND API LOGIN HANDLER
+    // ========================================
+    async function handleLoginSubmit(event) {
+      event.preventDefault();
+      hideAlert();
+
+      const usernameInput = document.getElementById("username").value.trim();
+      const passwordInput = document.getElementById("password").value.trim();
+      const submitBtn = document.getElementById("submitBtn");
+
+      if (!usernameInput || !passwordInput) {
+        showAlert("Please fill in both username and password fields.");
+        return;
+      }
+
+      // UI Loading state
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Authenticating...`;
+
+      try {
+        // Send Auth Request to Backend API Endpoint
+        // Isko badal kar bilkul exact YEH kar dein:
+const response = await fetch("http://localhost:5000/api/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            username: usernameInput,
+            password: passwordInput
+          })
+        });
+
+        const result = await response.json();
+
+        if (result.success && result.token) {
+          showAlert("Authentication successful! Redirecting to dashboard...", "success");
+
+          // Save JWT Security Token to localStorage for Dashboard requests
+          localStorage.setItem("bolani_token", result.token);
+
+          setTimeout(() => {
+            window.location.href = "port-dash.html";
+          }, 1000);
+        } else {
+          showAlert(result.message || "Invalid Username or Password. Access Denied.");
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `<i class="fa-solid fa-right-to-bracket"></i> Authenticate Access`;
+        }
+      } catch (error) {
+        console.error("Login API Error:", error);
+        showAlert("Unable to connect to backend server. Make sure server.js is running on localhost:5000");
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `<i class="fa-solid fa-right-to-bracket"></i> Authenticate Access`;
+      }
+    }
+
+    // ========================================
+    // AMBIENT PARTICLES CANVAS BACKGROUND
+    // ========================================
+    const canvas = document.getElementById("ambient-canvas");
+    const ctx = canvas.getContext("2d");
+
+    let particles = [];
+    const particleCount = 45;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.4;
+        this.speedY = (Math.random() - 0.5) * 0.4;
+        this.opacity = Math.random() * 0.5 + 0.1;
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+          this.reset();
+        }
+      }
+
+      draw() {
+        ctx.fillStyle = `rgba(56, 189, 248, ${this.opacity})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+
+    animateParticles();
+  </script>
+</body>
+</html>

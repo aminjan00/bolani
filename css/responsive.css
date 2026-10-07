@@ -1,0 +1,1818 @@
+
+/* ============================================================
+   BOLANI E-COMMERCE WEBSITE
+   RESPONSIVE STYLESHEET
+   File: css/responsive.css
+
+   PURPOSE:
+   - Desktop responsiveness
+   - Laptop responsiveness
+   - Tablet responsiveness
+   - Mobile responsiveness
+   - 402px mobile optimization
+   - Navbar mobile layout
+   - Hero banner responsiveness
+   - Collection cards
+   - Offers slider
+   - Social cards
+   - Footer
+
+   IMPORTANT:
+   Main design styles are inside:
+   css/style.css
+
+   Animation styles are inside:
+   css/animation.css
+   ============================================================ */
+
+
+/* ============================================================
+   01 — LARGE DESKTOP
+   1440px AND ABOVE
+   ============================================================ */
+
+@media (min-width: 1440px) {
+
+    /* -------------------------
+       NAVBAR
+       ------------------------- */
+
+    .navbar {
+        width: min(
+            calc(100% - 80px),
+            1500px
+        );
+    }
+
+
+    /* -------------------------
+       MAIN CONTAINER
+       ------------------------- */
+
+    .section-container,
+    .footer-container {
+        width: min(
+            calc(100% - 80px),
+            1400px
+        );
+    }
+
+
+    /* -------------------------
+       HERO
+       ------------------------- */
+
+    .hero-slider {
+        aspect-ratio: 1920 / 500;
+    }
+
+
+    /* -------------------------
+       COLLECTIONS
+       ------------------------- */
+
+    .collection-grid {
+        gap: 24px;
+    }
+
+
+    /* -------------------------
+       OFFERS
+       ------------------------- */
+
+    .offer-card {
+        flex-basis: 330px;
+
+        width: 330px;
+    }
+
+}
+
+
+/* ============================================================
+   02 — DESKTOP
+   1200px — 1439px
+   ============================================================ */
+
+@media (max-width: 1439px) {
+
+    .navbar {
+        width: calc(100% - 50px);
+    }
+
+
+    .section-container,
+    .footer-container {
+        width: calc(100% - 50px);
+    }
+
+
+    .nav-list {
+        gap: 1.5rem;
+    }
+
+
+    .main-navigation {
+        gap: 1.5rem;
+    }
+
+
+    .footer-main {
+        gap: 45px;
+    }
+
+}
+
+
+/* ============================================================
+   03 — SMALL DESKTOP / LAPTOP
+   992px — 1199px
+   ============================================================ */
+
+@media (max-width: 1199px) {
+
+    /* ========================================================
+       NAVBAR
+       ======================================================== */
+
+    .navbar {
+        min-height: 72px;
+
+        gap: 20px;
+    }
+
+
+    .nav-list {
+        gap: 1.15rem;
+    }
+
+
+    .main-navigation {
+        gap: 1.25rem;
+    }
+
+
+    .nav-link {
+        font-size: 0.82rem;
+    }
+
+
+    .navbar-whatsapp {
+        min-height: 39px;
+
+        padding:
+            0.55rem
+            0.85rem;
+
+        font-size: 0.8rem;
+    }
+
+
+    /* ========================================================
+       SECTION SPACING
+       ======================================================== */
+
+    .collection-section,
+    .offers-section,
+    .social-section {
+        padding: 70px 0;
+    }
+
+
+    /* ========================================================
+       COLLECTIONS
+       ======================================================== */
+
+    .collection-grid {
+        gap: 16px;
+    }
+
+
+    .collection-card-overlay {
+        padding: 20px;
+    }
+
+
+    .collection-card-content h3 {
+        font-size: 1.15rem;
+    }
+
+
+    /* ========================================================
+       OFFERS
+       ======================================================== */
+
+    .offer-card {
+        flex-basis: 300px;
+
+        width: 300px;
+    }
+
+
+    /* ========================================================
+       SOCIAL
+       ======================================================== */
+
+    .social-grid {
+        gap: 12px;
+    }
+
+
+    .social-card {
+        min-height: 90px;
+
+        padding: 13px;
+
+        gap: 10px;
+    }
+
+
+    .social-icon {
+        flex-basis: 42px;
+
+        width: 42px;
+
+        height: 42px;
+
+        border-radius: 12px;
+
+        font-size: 1.1rem;
+    }
+
+
+    .social-card-content strong {
+        font-size: 0.9rem;
+    }
+
+
+    /* ========================================================
+       FOOTER
+       ======================================================== */
+
+    .site-footer {
+        padding:
+            70px 0
+            30px;
+    }
+
+
+    .footer-main {
+        grid-template-columns:
+            1.5fr
+            1fr
+            1fr
+            1fr;
+
+        gap: 30px;
+    }
+
+}
+
+
+/* ============================================================
+   04 — TABLET LANDSCAPE
+   768px — 991px
+   ============================================================ */
+
+@media (max-width: 991px) {
+
+    /* ========================================================
+       NAVBAR
+       ======================================================== */
+
+    .navbar {
+        width: calc(100% - 35px);
+
+        min-height: 68px;
+    }
+
+
+    .brand-logo-text {
+        font-size: 1.5rem;
+    }
+
+
+    .mobile-menu-toggle {
+        display: flex;
+
+        order: 3;
+    }
+
+
+    .main-navigation {
+        position: absolute;
+
+        top: calc(100% + 1px);
+
+        left: 0;
+
+        width: 100%;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        justify-content: flex-start;
+
+        gap: 0;
+
+        padding: 15px 20px 20px;
+
+        background:
+            rgba(255, 255, 255, 0.98);
+
+        border-bottom:
+            1px solid
+            var(--border);
+
+        box-shadow:
+            0 15px 35px
+            rgba(15, 23, 42, 0.08);
+
+        opacity: 0;
+
+        visibility: hidden;
+
+        pointer-events: none;
+
+        transform:
+            translateY(-10px);
+
+        transition:
+            opacity var(--transition-normal),
+            visibility var(--transition-normal),
+            transform var(--transition-normal);
+    }
+
+
+    .main-navigation.active {
+        opacity: 1;
+
+        visibility: visible;
+
+        pointer-events: auto;
+
+        transform: translateY(0);
+    }
+
+
+    .nav-list {
+        width: 100%;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 2px;
+    }
+
+
+    .nav-item {
+        width: 100%;
+    }
+
+
+    .nav-link {
+        width: 100%;
+
+        padding:
+            12px 10px;
+
+        border-radius: 8px;
+    }
+
+
+    .nav-link:hover {
+        background: var(--bg-blue);
+    }
+
+
+    .nav-link::after {
+        display: none;
+    }
+
+
+    .navbar-whatsapp {
+        width: 100%;
+
+        margin-top: 10px;
+    }
+
+
+    /* ========================================================
+       COLLECTIONS
+       ======================================================== */
+
+    .collection-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 18px;
+    }
+
+
+    /* ========================================================
+       OFFERS
+       ======================================================== */
+
+    .offer-card {
+        flex-basis: 340px;
+
+        width: 340px;
+    }
+
+
+    .offers-prev {
+        left: 10px;
+    }
+
+
+    .offers-next {
+        right: 10px;
+    }
+
+
+    /* ========================================================
+       SOCIAL
+       ======================================================== */
+
+    .social-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+
+    /* ========================================================
+       FOOTER
+       ======================================================== */
+
+    .footer-main {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 45px 35px;
+    }
+
+
+    .footer-brand {
+        max-width: 100%;
+    }
+
+}
+
+
+/* ============================================================
+   05 — TABLET PORTRAIT
+   600px — 767px
+   ============================================================ */
+
+@media (max-width: 767px) {
+
+    /* ========================================================
+       GLOBAL
+       ======================================================== */
+
+    :root {
+        --container-padding: 0.9rem;
+    }
+
+
+    .section-container,
+    .footer-container {
+        width: calc(100% - 28px);
+    }
+
+
+    .collection-section,
+    .offers-section,
+    .social-section {
+        padding: 55px 0;
+    }
+
+
+    .section-heading {
+        margin-bottom: 28px;
+    }
+
+
+    .section-heading h2 {
+        font-size: 2rem;
+    }
+
+
+    /* ========================================================
+       NAVBAR
+       ======================================================== */
+
+    .navbar {
+        width: calc(100% - 28px);
+
+        min-height: 64px;
+    }
+
+
+    .brand-logo-text {
+        font-size: 1.4rem;
+    }
+
+
+    /* ========================================================
+       HERO
+       ======================================================== */
+
+    .hero-slider {
+        aspect-ratio: 402 / 160;
+
+        min-height: 160px;
+    }
+
+
+    .hero-image {
+        object-fit: cover;
+
+        object-position: center;
+    }
+
+
+    /* ========================================================
+       COLLECTION
+       ======================================================== */
+
+    .collection-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 12px;
+    }
+
+
+    .collection-card {
+        border-radius: 14px;
+    }
+
+
+    .collection-card-overlay {
+        padding: 14px;
+    }
+
+
+    .collection-card-number {
+        font-size: 0.65rem;
+    }
+
+
+    .collection-card-content h3 {
+        margin-bottom: 5px;
+
+        font-size: 1rem;
+    }
+
+
+    .collection-card-link {
+        font-size: 0.75rem;
+    }
+
+
+    /* ========================================================
+       OFFERS
+       ======================================================== */
+
+    .offers-slider-track {
+        gap: 12px;
+    }
+
+
+    /*
+       Mobile:
+       Approximately 1 full card + part of next card
+    */
+
+    .offer-card {
+        flex-basis:
+            calc(100vw - 55px);
+
+        width:
+            calc(100vw - 55px);
+
+        max-width: none;
+
+        border-radius: 13px;
+    }
+
+
+    .offers-slider-button {
+        width: 38px;
+
+        height: 38px;
+    }
+
+
+    .offers-prev {
+        left: 5px;
+    }
+
+
+    .offers-next {
+        right: 5px;
+    }
+
+
+    /* ========================================================
+       SOCIAL
+       ======================================================== */
+
+    .social-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 10px;
+    }
+
+
+    .social-card {
+        min-height: 82px;
+
+        padding: 10px;
+
+        border-radius: 12px;
+
+        gap: 8px;
+    }
+
+
+    .social-icon {
+        flex-basis: 38px;
+
+        width: 38px;
+
+        height: 38px;
+
+        border-radius: 10px;
+
+        font-size: 1rem;
+    }
+
+
+    .social-card-content span {
+        font-size: 0.62rem;
+    }
+
+
+    .social-card-content strong {
+        font-size: 0.78rem;
+    }
+
+
+    .social-external-icon {
+        font-size: 0.65rem;
+    }
+
+
+    /* ========================================================
+       FOOTER
+       ======================================================== */
+
+    .site-footer {
+        min-height: auto;
+
+        padding:
+            55px 0
+            25px;
+    }
+
+
+    .footer-container {
+        min-height: auto;
+    }
+
+
+    .footer-main {
+        grid-template-columns: 1fr;
+
+        gap: 35px;
+
+        padding-bottom: 40px;
+    }
+
+
+    .footer-brand {
+        max-width: 100%;
+    }
+
+
+    .footer-description {
+        max-width: 100%;
+    }
+
+
+    .footer-bottom {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 14px;
+    }
+
+
+    .footer-bottom-links {
+        flex-wrap: wrap;
+
+        gap: 12px 20px;
+    }
+
+
+    /* ========================================================
+       FLOATING WHATSAPP
+       ======================================================== */
+
+    .floating-whatsapp {
+        right: 15px;
+
+        bottom: 15px;
+
+        width: 52px;
+
+        height: 52px;
+
+        font-size: 1.45rem;
+    }
+
+}
+
+
+/* ============================================================
+   06 — MOBILE
+   480px — 599px
+   ============================================================ */
+
+@media (max-width: 599px) {
+
+    /* ========================================================
+       NAVBAR
+       ======================================================== */
+
+    .navbar {
+        width: calc(100% - 22px);
+
+        min-height: 60px;
+
+        gap: 10px;
+    }
+
+
+    .brand-logo-text {
+        font-size: 1.3rem;
+    }
+
+
+    .mobile-menu-toggle {
+        width: 38px;
+
+        height: 38px;
+    }
+
+
+    /* ========================================================
+       HERO
+       ======================================================== */
+
+    .hero-slider {
+        aspect-ratio: 402 / 160;
+
+        min-height: 150px;
+    }
+
+
+    /* ========================================================
+       COLLECTIONS
+       ======================================================== */
+
+    .collection-grid {
+        gap: 9px;
+    }
+
+
+    .collection-card {
+        border-radius: 11px;
+    }
+
+
+    .collection-card-overlay {
+        padding: 10px;
+    }
+
+
+    .collection-card-content h3 {
+        font-size: 0.82rem;
+    }
+
+
+    .collection-card-link {
+        font-size: 0.65rem;
+    }
+
+
+    /* ========================================================
+       OFFERS
+       ======================================================== */
+
+    .offer-card {
+        flex-basis:
+            calc(100vw - 45px);
+
+        width:
+            calc(100vw - 45px);
+    }
+
+
+    /* ========================================================
+       SOCIAL
+       ======================================================== */
+
+    .social-grid {
+        gap: 8px;
+    }
+
+
+    .social-card {
+        min-height: 75px;
+
+        padding: 8px;
+    }
+
+
+    .social-icon {
+        flex-basis: 34px;
+
+        width: 34px;
+
+        height: 34px;
+
+        font-size: 0.9rem;
+    }
+
+
+    .social-card-content strong {
+        font-size: 0.7rem;
+    }
+
+
+    .social-external-icon {
+        display: none;
+    }
+
+}
+
+
+/* ============================================================
+   07 — 402px MOBILE
+   ============================================================
+   Specific optimization for the user's target mobile width.
+   ============================================================ */
+
+@media (max-width: 402px) {
+
+    /* ========================================================
+       GLOBAL CONTAINER
+       ======================================================== */
+
+    .section-container,
+    .footer-container {
+        width: calc(100% - 20px);
+    }
+
+
+    /* ========================================================
+       NAVBAR
+       ======================================================== */
+
+    .navbar {
+        width: calc(100% - 16px);
+
+        min-height: 58px;
+    }
+
+
+    .brand-logo-text {
+        font-size: 1.2rem;
+    }
+
+
+    .mobile-menu-toggle {
+        width: 36px;
+
+        height: 36px;
+    }
+
+
+    .mobile-menu-toggle span {
+        width: 18px;
+    }
+
+
+    /* ========================================================
+       HERO
+       ======================================================== */
+
+    /*
+       Target width:
+       402px
+
+       Banner maintains responsive ratio.
+       Image itself can be 1920x500.
+    */
+
+    .hero-slider {
+        width: 100%;
+
+        aspect-ratio: 402 / 150;
+
+        min-height: 145px;
+    }
+
+
+    .hero-image {
+        width: 100%;
+
+        height: 100%;
+
+        object-fit: cover;
+
+        object-position: center;
+    }
+
+
+    /* ========================================================
+       SECTION HEADINGS
+       ======================================================== */
+
+    .collection-section,
+    .offers-section,
+    .social-section {
+        padding:
+            42px 0;
+    }
+
+
+    .section-heading {
+        margin-bottom: 22px;
+    }
+
+
+    .section-eyebrow {
+        margin-bottom: 8px;
+
+        padding:
+            0.32rem
+            0.65rem;
+
+        font-size: 0.58rem;
+    }
+
+
+    .section-heading h2 {
+        font-size: 1.55rem;
+    }
+
+
+    /* ========================================================
+       COLLECTION CARDS
+       ======================================================== */
+
+    /*
+       Four cards remain horizontally arranged
+       as 2 + 2 on narrow mobile screens.
+    */
+
+    .collection-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 8px;
+    }
+
+
+    .collection-card {
+        aspect-ratio: 1 / 1;
+
+        border-radius: 10px;
+    }
+
+
+    .collection-card-overlay {
+        padding: 9px;
+    }
+
+
+    .collection-card-number {
+        margin-bottom: 2px;
+
+        font-size: 0.55rem;
+    }
+
+
+    .collection-card-content h3 {
+        margin-bottom: 3px;
+
+        font-size: 0.75rem;
+    }
+
+
+    .collection-card-link {
+        font-size: 0.58rem;
+
+        gap: 3px;
+    }
+
+
+    /* ========================================================
+       OFFERS
+       ======================================================== */
+
+    .offers-slider-track {
+        gap: 10px;
+    }
+
+
+    /*
+       At 402px:
+       Approximately one complete card +
+       part of the following card.
+    */
+
+    .offer-card {
+        flex-basis:
+            calc(100vw - 42px);
+
+        width:
+            calc(100vw - 42px);
+
+        aspect-ratio: 1920 / 1080;
+
+        border-radius: 10px;
+    }
+
+
+    .offers-slider-button {
+        width: 34px;
+
+        height: 34px;
+    }
+
+
+    .offers-slider-button i {
+        font-size: 0.7rem;
+    }
+
+
+    .offers-prev {
+        left: 3px;
+    }
+
+
+    .offers-next {
+        right: 3px;
+    }
+
+
+    /* ========================================================
+       SOCIAL MEDIA
+       ======================================================== */
+
+    /*
+       Mobile requirement:
+       Keep all 5 social cards compact.
+       Two-column layout gives a clean mobile grid.
+    */
+
+    .social-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 7px;
+    }
+
+
+    .social-card {
+        min-height: 72px;
+
+        padding: 8px;
+
+        border-radius: 9px;
+
+        gap: 7px;
+    }
+
+
+    .social-icon {
+        flex-basis: 31px;
+
+        width: 31px;
+
+        height: 31px;
+
+        border-radius: 8px;
+
+        font-size: 0.82rem;
+    }
+
+
+    .social-card-content span {
+        font-size: 0.52rem;
+    }
+
+
+    .social-card-content strong {
+        font-size: 0.65rem;
+    }
+
+
+    /* ========================================================
+       FOOTER
+       ======================================================== */
+
+    /*
+       Mobile footer is fluid.
+       At 402px it naturally fills the viewport width.
+    */
+
+    .site-footer {
+        width: 100%;
+
+        padding:
+            45px 0
+            20px;
+    }
+
+
+    .footer-main {
+        gap: 28px;
+
+        padding-bottom: 30px;
+    }
+
+
+    .footer-logo {
+        font-size: 1.7rem;
+    }
+
+
+    .footer-description {
+        font-size: 0.75rem;
+
+        line-height: 1.7;
+    }
+
+
+    .footer-column h3 {
+        margin-bottom: 12px;
+
+        font-size: 0.9rem;
+    }
+
+
+    .footer-column li {
+        font-size: 0.75rem;
+    }
+
+
+    .footer-column ul {
+        gap: 8px;
+    }
+
+
+    .footer-bottom {
+        padding-top: 18px;
+    }
+
+
+    .footer-bottom p,
+    .footer-bottom-links a {
+        font-size: 0.6rem;
+    }
+
+
+    /* ========================================================
+       FLOATING WHATSAPP
+       ======================================================== */
+
+    .floating-whatsapp {
+        right: 12px;
+
+        bottom: 12px;
+
+        width: 48px;
+
+        height: 48px;
+
+        font-size: 1.3rem;
+    }
+
+}
+
+
+/* ============================================================
+   08 — VERY SMALL MOBILE
+   360px AND BELOW
+   ============================================================ */
+
+@media (max-width: 359px) {
+
+    .brand-logo-text {
+        font-size: 1.1rem;
+    }
+
+
+    .collection-grid {
+        gap: 6px;
+    }
+
+
+    .collection-card-overlay {
+        padding: 7px;
+    }
+
+
+    .collection-card-content h3 {
+        font-size: 0.68rem;
+    }
+
+
+    .social-grid {
+        gap: 5px;
+    }
+
+
+    .social-card {
+        min-height: 68px;
+
+        padding: 6px;
+    }
+
+
+    .social-icon {
+        flex-basis: 28px;
+
+        width: 28px;
+
+        height: 28px;
+
+        font-size: 0.75rem;
+    }
+
+
+    .social-card-content strong {
+        font-size: 0.6rem;
+    }
+
+
+    .offer-card {
+        flex-basis:
+            calc(100vw - 35px);
+
+        width:
+            calc(100vw - 35px);
+    }
+
+}
+
+
+/* ============================================================
+   09 — LANDSCAPE MOBILE
+   ============================================================ */
+
+@media (
+    max-width: 767px
+) and (
+    orientation: landscape
+) {
+
+    .hero-slider {
+        aspect-ratio: 1920 / 500;
+
+        min-height: 150px;
+    }
+
+
+    .collection-grid {
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+
+        gap: 8px;
+    }
+
+
+    .social-grid {
+        grid-template-columns:
+            repeat(5, minmax(0, 1fr));
+
+        gap: 6px;
+    }
+
+
+    .social-card {
+        min-height: 70px;
+
+        padding: 7px;
+    }
+
+
+    .social-icon {
+        width: 30px;
+
+        height: 30px;
+
+        flex-basis: 30px;
+    }
+
+}
+
+
+/* ============================================================
+   10 — TOUCH DEVICES
+   ============================================================ */
+
+@media (hover: none) and (pointer: coarse) {
+
+    /*
+       Disable exaggerated hover movement
+       on touch devices.
+    */
+
+    .collection-card:hover {
+        transform: none;
+    }
+
+
+    .offer-card:hover {
+        transform: none;
+    }
+
+
+    .social-card:hover {
+        transform: none;
+    }
+
+
+    .navbar-whatsapp:hover {
+        transform: none;
+    }
+
+
+    .floating-whatsapp:hover {
+        transform: none;
+    }
+
+
+    /*
+       Keep image zoom subtle on touch devices.
+    */
+
+    .collection-card:hover
+    .collection-card-image img,
+    .offer-card:hover img {
+        transform: none;
+    }
+
+}
+
+
+/* ============================================================
+   11 — REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .offers-slider {
+        scroll-behavior: auto;
+    }
+
+}
+
+
+/* =========================================================
+   SECTION 5 + SECTION 6
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    /* SOCIAL */
+
+    .social-grid {
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 15px;
+    }
+
+
+    /* FOOTER */
+
+    .footer-main {
+        grid-template-columns:
+            1.4fr 1fr 1fr;
+
+        gap: 30px;
+
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE — 768px
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    /* -----------------------------------------------------
+       SOCIAL SECTION
+       ----------------------------------------------------- */
+
+    .social-section {
+        padding:
+            55px 15px;
+    }
+
+
+    .social-grid {
+
+        /*
+         * 2 cards per row instead of a long vertical
+         * single-card layout.
+         */
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 12px;
+
+        margin-top: 30px;
+    }
+
+
+    .social-card {
+
+        min-height: 82px;
+
+        padding: 12px;
+
+        gap: 10px;
+
+        border-radius: 13px;
+    }
+
+
+    .social-icon {
+
+        width: 44px;
+        min-width: 44px;
+
+        height: 44px;
+
+        border-radius: 12px;
+
+        font-size: 21px;
+    }
+
+
+    .social-card-content h3 {
+        font-size: 14px;
+
+        margin-bottom: 3px;
+    }
+
+
+    .social-card-content p {
+        font-size: 10px;
+    }
+
+
+    .social-external-icon {
+        display: none;
+    }
+
+
+    /* -----------------------------------------------------
+       FOOTER
+       ----------------------------------------------------- */
+
+    .site-footer {
+
+        /*
+         * Background remains cinematic while keeping
+         * the footer compact.
+         */
+
+        min-height: auto;
+    }
+
+
+    .footer-background {
+
+        background-position:
+            center center;
+
+        background-size:
+            cover;
+    }
+
+
+    .site-footer::before {
+
+        background:
+            linear-gradient(
+                180deg,
+                rgba(0, 0, 0, 0.82),
+                rgba(35, 0, 0, 0.72),
+                rgba(0, 0, 0, 0.90)
+            );
+    }
+
+
+    .footer-main {
+
+        min-height: auto;
+
+        padding:
+            35px 20px 25px;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 25px 20px;
+
+        align-items: start;
+    }
+
+
+    .footer-brand {
+
+        grid-column:
+            1 / -1;
+
+        max-width: 100%;
+
+        text-align: center;
+    }
+
+
+    .footer-logo {
+
+        font-size: 31px;
+    }
+
+
+    .footer-description {
+
+        max-width: 500px;
+
+        margin:
+            0 auto;
+
+        font-size: 12px;
+    }
+
+
+    .footer-column {
+
+        text-align: center;
+    }
+
+
+    .footer-column h3 {
+
+        font-size: 14px;
+
+        margin-bottom: 10px;
+    }
+
+
+    .footer-column li {
+
+        margin-bottom: 6px;
+    }
+
+
+    .footer-column a {
+
+        font-size: 11px;
+    }
+
+
+    .footer-contact p {
+
+        justify-content: center;
+
+        font-size: 11px;
+
+        margin-bottom: 8px;
+    }
+
+
+    /* -----------------------------------------------------
+       FOOTER BOTTOM
+       ----------------------------------------------------- */
+
+    .footer-bottom {
+
+        min-height: 45px;
+
+        padding:
+            9px 15px;
+
+        flex-direction: row;
+
+        justify-content: space-between;
+
+        gap: 10px;
+
+        text-align: center;
+    }
+
+
+    .footer-bottom p {
+
+        font-size: 9px;
+    }
+
+
+    .footer-created-by {
+
+        white-space: nowrap;
+    }
+
+
+    /* FLOATING WHATSAPP */
+
+    .floating-whatsapp {
+
+        width: 50px;
+
+        height: 50px;
+
+        right: 16px;
+
+        bottom: 16px;
+
+        font-size: 24px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE — 480px
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    /* SOCIAL */
+
+    .social-section {
+
+        padding:
+            45px 10px;
+    }
+
+
+    .social-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 8px;
+
+        margin-top: 25px;
+    }
+
+
+    .social-card {
+
+        min-height: 70px;
+
+        padding:
+            9px;
+
+        gap: 8px;
+
+        border-radius: 11px;
+    }
+
+
+    .social-icon {
+
+        width: 37px;
+
+        min-width: 37px;
+
+        height: 37px;
+
+        border-radius: 9px;
+
+        font-size: 18px;
+    }
+
+
+    .social-card-content h3 {
+
+        font-size: 11px;
+    }
+
+
+    .social-card-content p {
+
+        font-size: 8px;
+    }
+
+
+    /* FOOTER */
+
+    .footer-main {
+
+        padding:
+            28px 12px 20px;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap:
+            20px 10px;
+    }
+
+
+    .footer-logo {
+
+        font-size: 27px;
+    }
+
+
+    .footer-description {
+
+        font-size: 10px;
+
+        line-height: 1.5;
+    }
+
+
+    .footer-column h3 {
+
+        font-size: 12px;
+    }
+
+
+    .footer-column a {
+
+        font-size: 9px;
+    }
+
+
+    .footer-contact p {
+
+        font-size: 9px;
+
+        gap: 5px;
+    }
+
+
+    .footer-bottom {
+
+        min-height: 42px;
+
+        padding:
+            8px 10px;
+
+        gap: 5px;
+    }
+
+
+    .footer-bottom p {
+
+        font-size: 7.5px;
+    }
+
+
+    .floating-whatsapp {
+
+        width: 46px;
+
+        height: 46px;
+
+        right: 12px;
+
+        bottom: 12px;
+
+        font-size: 21px;
+    }
+
+}

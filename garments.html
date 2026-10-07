@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- ==========================================================================
+       SEO METADATA
+       ========================================================================== -->
+  <title>Garments Collection - T-Shirts, Trousers & Track Suits | BOLANI</title>
+  <meta name="description" content="Shop high-quality garments at BOLANI. Explore our premium collection of T-Shirts, Trousers, and Track Suits with best prices and fast delivery across Pakistan.">
+  <link rel="canonical" href="https://bolani.com/garments.html">
+
+  <!-- Open Graph / Social Media Metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Garments Collection - BOLANI">
+  <meta property="og:description" content="Explore top-quality T-Shirts, Trousers, and Track Suits at unbeatable prices on BOLANI.">
+  <meta property="og:image" content="https://via.placeholder.com/1200x630?text=BOLANI+Garments">
+  <meta property="og:url" content="https://bolani.com/garments.html">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* ==========================================================================
+       RESET & THEME VARIABLES
+       ========================================================================== */
+    :root {
+      --bg-main: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --accent: #10b981;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --radius: 12px;
+      --transition: all 0.25s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.5;
+      padding-bottom: 40px;
+    }
+
+    /* ==========================================================================
+       NAVIGATION BAR
+       ========================================================================== */
+    .navbar {
+      background-color: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    /* Text Logo */
+    .brand-logo {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      color: var(--text-main);
+      text-decoration: none;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .brand-logo span {
+      color: var(--primary);
+    }
+
+    /* Circular Icon Navigation Buttons */
+    .nav-categories {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-icon-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: #f1f5f9;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 18px;
+      transition: var(--transition);
+      border: 1px solid var(--border-color);
+      position: relative;
+    }
+
+    .nav-icon-btn:hover, .nav-icon-btn.active {
+      background-color: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .nav-icon-btn .tooltip {
+      position: absolute;
+      bottom: -28px;
+      font-size: 10px;
+      font-weight: 700;
+      background: #0f172a;
+      color: #fff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+    }
+
+    .nav-icon-btn:hover .tooltip {
+      opacity: 1;
+    }
+
+    /* ==========================================================================
+       HERO CATEGORY FILTER AREA (3 CIRCULAR IMAGE BUTTONS)
+       ========================================================================== */
+    .hero-subcategories {
+      max-width: 1200px;
+      margin: 20px auto 10px;
+      padding: 0 16px;
+    }
+
+    .subcategory-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      overflow-x: auto;
+      padding: 10px 0;
+    }
+
+    .subcat-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .subcat-img-wrap {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid transparent;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      background-color: #e2e8f0;
+    }
+
+    .subcat-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .subcat-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .subcat-btn.active .subcat-img-wrap,
+    .subcat-btn:hover .subcat-img-wrap {
+      border-color: var(--primary);
+      transform: scale(1.08);
+      box-shadow: var(--shadow-md);
+    }
+
+    .subcat-btn.active .subcat-title {
+      color: var(--primary);
+    }
+
+    /* ==========================================================================
+       DYNAMIC FILTER & PRICE TOOLBAR
+       ========================================================================== */
+    .filter-toolbar {
+      max-width: 1200px;
+      margin: 10px auto 20px;
+      padding: 0 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Dynamic Filter Button & Dropdown */
+    .dynamic-filter-container {
+      position: relative;
+    }
+
+    .dynamic-filter-btn {
+      background-color: #ffffff;
+      border: 1px solid var(--border-color);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .dynamic-filter-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .dynamic-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 6px;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      width: 200px;
+      display: none;
+      z-index: 100;
+      overflow: hidden;
+    }
+
+    .dynamic-dropdown.show {
+      display: block;
+    }
+
+    .dropdown-item {
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text-main);
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .dropdown-item:hover, .dropdown-item.active {
+      background-color: #eff6ff;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Price Sort Dropdown */
+    .price-filter-select {
+      background-color: #ffffff;
+      border: 1px solid var(--border-color);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      outline: none;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ==========================================================================
+       PRODUCT GRID & CARDS
+       ========================================================================== */
+    .products-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+      justify-content: center;
+    }
+
+    /* Mobile Card Target ~320px x 400px */
+    .product-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      height: 400px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: #cbd5e1;
+    }
+
+    /* Vertical Social-Media-Style Image Container */
+    .card-img-wrap {
+      width: 100%;
+      height: 270px;
+      background-color: #f1f5f9;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .product-card:hover .card-img-wrap img {
+      transform: scale(1.05);
+    }
+
+    .filter-tag-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(4px);
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .card-body {
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+    }
+
+    .product-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+
+    .card-footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+
+    .product-price {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .view-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: #eff6ff;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      transition: var(--transition);
+    }
+
+    .product-card:hover .view-btn {
+      background-color: var(--primary);
+      color: #ffffff;
+    }
+
+    /* Empty State Notice */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+      grid-column: 1 / -1;
+    }
+
+    .empty-state i {
+      font-size: 40px;
+      margin-bottom: 12px;
+      color: #cbd5e1;
+    }
+
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 600px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .product-card {
+        height: 360px;
+      }
+
+      .card-img-wrap {
+        height: 230px;
+      }
+
+      .subcategory-row {
+        gap: 16px;
+      }
+
+      .subcat-img-wrap {
+        width: 60px;
+        height: 60px;
+      }
+
+      .subcat-title {
+        font-size: 11px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-card {
+        max-width: 320px;
+        margin: 0 auto;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       TOP NAVIGATION BAR
+       ========================================================================== -->
+  <nav class="navbar">
+    <div class="nav-container">
+      
+      <!-- Text Logo -->
+      <a href="index.html" class="brand-logo" aria-label="BOLANI Homepage">
+        BOLANI
+      </a>
+
+      <!-- Circular Icon Navigation -->
+      <div class="nav-categories">
+        
+        <!-- Garments (Active Page) -->
+        <a href="garments.html" class="nav-icon-btn active" aria-label="Garments Category">
+          <i class="fa-solid fa-shirt"></i>
+          <span class="tooltip">Garments</span>
+        </a>
+
+        <!-- Sports Shoes -->
+        <a href="sports-shoes.html" class="nav-icon-btn" aria-label="Sports Shoes Category">
+          <i class="fa-solid fa-shoe-prints"></i>
+          <span class="tooltip">Shoes</span>
+        </a>
+
+        <!-- Sports & Gym -->
+        <a href="sports-gym.html" class="nav-icon-btn" aria-label="Sports and Gym Category">
+          <i class="fa-solid fa-dumbbell"></i>
+          <span class="tooltip">Sports & Gym</span>
+        </a>
+
+        <!-- Tech Gadgets -->
+        <a href="tech-gadgets.html" class="nav-icon-btn" aria-label="Tech Gadgets Category">
+          <i class="fa-solid fa-headphones"></i>
+          <span class="tooltip">Tech</span>
+        </a>
+
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ==========================================================================
+       HERO SUBCATEGORY FILTER AREA (3 CIRCULAR IMAGE BUTTONS)
+       ========================================================================== -->
+  <header class="hero-subcategories">
+    <div class="subcategory-row">
+      
+      <!-- All Garments Button -->
+      <button class="subcat-btn active" onclick="filterBySubcategory('All', this)">
+        <div class="subcat-img-wrap">
+          <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=200&q=80" alt="All Garments">
+        </div>
+        <span class="subcat-title">All Items</span>
+      </button>
+
+      <!-- T-Shirts Button -->
+      <button class="subcat-btn" onclick="filterBySubcategory('T-Shirts', this)">
+        <div class="subcat-img-wrap">
+          <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=200&q=80" alt="T-Shirts Category">
+        </div>
+        <span class="subcat-title">T-Shirts</span>
+      </button>
+
+      <!-- Trousers Button -->
+      <button class="subcat-btn" onclick="filterBySubcategory('Trousers', this)">
+        <div class="subcat-img-wrap">
+          <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=200&q=80" alt="Trousers Category">
+        </div>
+        <span class="subcat-title">Trousers</span>
+      </button>
+
+      <!-- Track Suits Button -->
+      <button class="subcat-btn" onclick="filterBySubcategory('Track Suits', this)">
+        <div class="subcat-img-wrap">
+          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=200&q=80" alt="Track Suits Category">
+        </div>
+        <span class="subcat-title">Track Suits</span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       DYNAMIC FILTER & PRICE TOOLBAR
+       ========================================================================== -->
+  <div class="filter-toolbar">
+    
+    <!-- Left Side: Dynamic Dynamic Filter Button -->
+    <div class="dynamic-filter-container">
+      <button class="dynamic-filter-btn" onclick="toggleDynamicDropdown()">
+        <i class="fa-solid fa-sliders"></i> <span id="currentFilterLabel">All Dynamic Filters</span> <i class="fa-solid fa-chevron-down" style="font-size: 11px;"></i>
+      </button>
+      <div class="dynamic-dropdown" id="dynamicDropdown">
+        <div class="dropdown-item active" onclick="selectDynamicFilter('All')">All Filters</div>
+        <!-- Dynamic Filter Items Populated via JS / API -->
+        <div id="dynamicFilterList"></div>
+      </div>
+    </div>
+
+    <!-- Right Side: Price Sort Selector -->
+    <div>
+      <select class="price-filter-select" id="priceSortSelect" onchange="applyPriceSort()">
+        <option value="default">Sort by: Default</option>
+        <option value="low-high">Price: Low to High</option>
+        <option value="high-low">Price: High to Low</option>
+      </select>
+    </div>
+
+  </div>
+
+  <!-- ==========================================================================
+       PRODUCT GRID CONTAINER
+       ========================================================================== -->
+  <main class="products-container">
+    <div class="product-grid" id="productGrid">
+      <!-- Products Rendered Dynamically -->
+    </div>
+  </main>
+
+ <!-- ==========================================================================
+       JAVASCRIPT DYNAMIC FILTERING & LIVE BACKEND API LOGIC
+       ========================================================================== -->
+  <script>
+    // Global Configuration
+    const API_BASE_URL = "http://localhost:5000/api"; // Production: "https://bolani-backend.vercel.app/api"
+    const PAGE_CATEGORY = "Garments";
+
+    // Global State
+    let currentSubcategory = "All";
+    let currentDynamicFilter = "All";
+    let currentSortOrder = "default";
+    
+    let loadedProducts = [];
+    let loadedDynamicFilters = [];
+
+    // Static Fallback Data (if backend API is offline)
+    const garmentsFallbackProducts = [
+      {
+        id: "g101",
+        name: "Adidas Essential Crewneck T-Shirt",
+        productCategory: "T-Shirts",
+        filter: "Adidas T-Shirts",
+        price: 2499,
+        mainImage: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: "g102",
+        name: "Premium Silk Finish Black T-Shirt",
+        productCategory: "T-Shirts",
+        filter: "Silk T-Shirts",
+        price: 2999,
+        mainImage: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: "g103",
+        name: "Casual Slim Fit Chino Trouser",
+        productCategory: "Trousers",
+        filter: "Slim Fit Trousers",
+        price: 3499,
+        mainImage: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: "g104",
+        name: "Complete Athletic Performance Track Suit",
+        productCategory: "Track Suits",
+        filter: "Cotton T-Shirts",
+        price: 5999,
+        mainImage: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80"
+      }
+    ];
+
+    // ========================================
+    // INITIALIZATION & API FETCH
+    // ========================================
+    document.addEventListener("DOMContentLoaded", () => {
+      fetchDynamicFiltersFromAPI();
+      fetchProductsFromAPI();
+    });
+
+    // 1. Fetch Dynamic Filters from MongoDB API
+    async function fetchDynamicFiltersFromAPI() {
+      try {
+        const response = await fetch(`${API_BASE_URL}/filters?pageCategory=${encodeURIComponent(PAGE_CATEGORY)}`);
+        const result = await response.json();
+
+        if (result.success && result.data.length > 0) {
+          loadedDynamicFilters = result.data.map(f => f.filterName);
+        } else {
+          loadedDynamicFilters = ["Adidas T-Shirts", "Silk T-Shirts", "Cotton T-Shirts", "Slim Fit Trousers"];
+        }
+      } catch (error) {
+        console.warn("Backend offline, using fallback dynamic filters.");
+        loadedDynamicFilters = ["Adidas T-Shirts", "Silk T-Shirts", "Cotton T-Shirts", "Slim Fit Trousers"];
+      }
+
+      renderDynamicFilterDropdown();
+    }
+
+    // 2. Fetch Products from MongoDB API
+    async function fetchProductsFromAPI() {
+      const grid = document.getElementById("productGrid");
+      if (grid) {
+        grid.innerHTML = `<div style="text-align:center; padding: 40px; grid-column: 1/-1; color: var(--text-muted);"><i class="fa-solid fa-spinner fa-spin" style="font-size:28px;"></i><p style="margin-top:10px;">Loading Garments Products...</p></div>`;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/products?pageCategory=${encodeURIComponent(PAGE_CATEGORY)}`);
+        const result = await response.json();
+
+        if (result.success && result.data.length > 0) {
+          loadedProducts = result.data;
+        } else {
+          loadedProducts = garmentsFallbackProducts;
+        }
+      } catch (error) {
+        console.warn("Backend offline, loading fallback garments products.");
+        loadedProducts = garmentsFallbackProducts;
+      }
+
+      renderProducts();
+    }
+
+    // Populate Left Dropdown with Dynamic Admin Filters
+    function renderDynamicFilterDropdown() {
+      const container = document.getElementById("dynamicFilterList");
+      if (!container) return;
+      container.innerHTML = "";
+      
+      loadedDynamicFilters.forEach(filterName => {
+        const item = document.createElement("div");
+        item.className = "dropdown-item";
+        item.textContent = filterName;
+        item.onclick = () => selectDynamicFilter(filterName);
+        container.appendChild(item);
+      });
+    }
+
+    // Toggle Dynamic Filter Dropdown Menu
+    function toggleDynamicDropdown() {
+      const dropdown = document.getElementById("dynamicDropdown");
+      if (dropdown) dropdown.classList.toggle("show");
+    }
+
+    // Close Dropdown on Click Outside
+    window.addEventListener("click", (e) => {
+      if (!e.target.closest(".dynamic-filter-container")) {
+        const dropdown = document.getElementById("dynamicDropdown");
+        if (dropdown) dropdown.classList.remove("show");
+      }
+    });
+
+    // Select Subcategory (Circular Hero Buttons)
+    function filterBySubcategory(subcategory, element) {
+      currentSubcategory = subcategory;
+      
+      document.querySelectorAll(".subcat-btn").forEach(btn => btn.classList.remove("active"));
+      if (element) element.classList.add("active");
+
+      renderProducts();
+    }
+
+    // Select Dynamic Filter from Dropdown
+    function selectDynamicFilter(filterName) {
+      currentDynamicFilter = filterName;
+      const label = document.getElementById("currentFilterLabel");
+      if (label) label.textContent = filterName === "All" ? "All Dynamic Filters" : filterName;
+
+      const dropdown = document.getElementById("dynamicDropdown");
+      if (dropdown) dropdown.classList.remove("show");
+
+      renderProducts();
+    }
+
+    // Price Sort Logic
+    function applyPriceSort() {
+      const sortSelect = document.getElementById("priceSortSelect");
+      if (sortSelect) currentSortOrder = sortSelect.value;
+      renderProducts();
+    }
+
+    // Filter & Render Product Cards Grid
+    function renderProducts() {
+      const grid = document.getElementById("productGrid");
+      if (!grid) return;
+      grid.innerHTML = "";
+
+      // 1. Filter by Subcategory & Dynamic Filter
+      let filtered = loadedProducts.filter(p => {
+        if (currentSubcategory !== "All" && p.productCategory !== currentSubcategory) return false;
+        if (currentDynamicFilter !== "All" && p.filter !== currentDynamicFilter) return false;
+        return true;
+      });
+
+      // 2. Sort by Price
+      if (currentSortOrder === "low-high") {
+        filtered.sort((a, b) => a.price - b.price);
+      } else if (currentSortOrder === "high-low") {
+        filtered.sort((a, b) => b.price - a.price);
+      }
+
+      // Empty State Display
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state" style="grid-column: 1/-1; text-align: center; padding: 50px 20px;">
+            <i class="fa-solid fa-shirt" style="font-size:40px; color:var(--text-muted); margin-bottom:15px;"></i>
+            <h3>No garments found</h3>
+            <p>Try changing your active filters or price sorting.</p>
+          </div>
+        `;
+        return;
+      }
+
+      // Render Cards
+      filtered.forEach(p => {
+        const prodId = p._id || p.id;
+        const card = document.createElement("a");
+        card.href = `product-detail.html?id=${encodeURIComponent(prodId)}`;
+        card.className = "product-card";
+        card.innerHTML = `
+          <div class="card-img-wrap">
+            <img src="${p.mainImage}" alt="${p.name}" loading="lazy">
+            ${p.filter ? `<span class="filter-tag-badge">${p.filter}</span>` : ''}
+          </div>
+          <div class="card-body">
+            <h2 class="product-title">${p.name}</h2>
+            <div class="card-footer-row">
+              <span class="product-price">Rs. ${p.price.toLocaleString()}</span>
+              <div class="view-btn"><i class="fa-solid fa-arrow-right"></i></div>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+  </script>
+</body>
+</html>
